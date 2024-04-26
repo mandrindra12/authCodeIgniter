@@ -9,3 +9,4 @@ $routes->get('/', 'UserController::index');
 $routes->post('/connexion', 'UserController::connexion');
 $routes->get('/inscription', 'UserController::inscriptionIndex');
 $routes->post('/inscription', 'UserController::inscription');
+$routes->get('/connexion', 'UserController::index');
