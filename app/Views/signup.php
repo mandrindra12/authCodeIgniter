@@ -131,7 +131,7 @@
             </div>
             <div class="link">
                 <p>Connectez-vous avec votre compte MIT</p>
-                <a href="/authentification/login.php">Connexion</a>
+                <a href="/inscription">Connexion</a>
             </div>
             <div id="popup" class="popup">
                 <div class="p-content">
