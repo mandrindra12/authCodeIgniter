@@ -188,7 +188,7 @@
                 <div class="link">
                     <p>Connectez-vous facilement avec votre compte MIT</p>
                     <div class="container-link-signup">
-                        <a href="/authentification/signup.php" >
+                        <a href="/inscription" >
                             <p class="link">Créer un compte</p>
                         </a>
                     </div>
