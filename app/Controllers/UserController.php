@@ -44,6 +44,9 @@ class UserController extends BaseController {
           echo json_encode(['status' => 'loggin successful', 'status_code' => 202]);
           return 0;
         } 
+      } else {
+        echo json_encode(['status' => 'incorrect password', 'status_code' => 403]);
+        return 403;
       }
     }
   }
