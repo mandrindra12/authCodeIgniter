@@ -41,7 +41,7 @@ class UserController extends BaseController {
           json_encode(['status' => 'user already logged in', 'status_code' => 403]);
           return 403;
         } else if($this->userModel->connexion()) {
-          echo json_encode(['status' => 'loggin successful', 'status_code' => 202]);
+          echo json_encode(['status' => 'loggin successful', 'status_code' => 200]);
           return 0;
         } 
       } else {
