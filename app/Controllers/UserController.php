@@ -25,7 +25,8 @@ class UserController extends BaseController {
       return 404;
     }
     $users = $this->userModel->getInfo($nom, $prenom)->get()->getResultArray();
-    for($i = 0; $i<numRow; $i++) {
+    foreach ($users as $user) {
+      # code...
       // if(password_verify($mdp, $users['password']) {}
         // if($users['est_actif'] == 1) {
         //   echo json_encode(['status' => 'user already logged in' , 'status_code' => 403]);
