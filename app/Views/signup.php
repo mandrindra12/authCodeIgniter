@@ -116,8 +116,8 @@
                 <h3>Cr&eacute;ation de compte</h3>
                 <form id="signup">
                     <div class="input">
-                        <input type="text" name="lastname" placeholder='Nom...' required autocomplete='off'>
-                        <input type="text" name="firstname" placeholder='Pr&eacute;nom...' required autocomplete='off'>
+                        <input type="text" name="nom" placeholder='Nom...' required autocomplete='off'>
+                        <input type="text" name="prenom" placeholder='Pr&eacute;nom...' required autocomplete='off'>
                         <input type="password" name="password" placeholder='Mot de passe...' required autocomplete='off'>
                         <div style="display: flex;flex-direction:column;">
                             <input type="password" name="passwd" placeholder='Confirmation mot de passe...' required autocomplete='off'>
