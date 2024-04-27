@@ -24,7 +24,7 @@ class UserController extends BaseController {
       echo json_encode(['status' => 'user not found', 'status_code' => 404]);
       return 404;
     }
-    $users = $this->userModel->getInfo()->get()->getResultArray();
+    $users = $this->userModel->getInfo($nom, $prenom)->get()->getResultArray();
     for($i = 0; $i<numRow; $i++) {
       // if(password_verify($mdp, $users['password']) {}
         // if($users['est_actif'] == 1) {
