@@ -6,66 +6,71 @@ use App\Models\UserModel;
 use App\Models\PersonModel;
 
 class UserController extends BaseController {
-  private $userModel;
-  private $personModel;
+  private $usermodel;
+  private $personmodel;
   public function __construct() {
-    $this->userModel = new UserModel();
-    $this->personModel = new PersonModel();
+    $this->usermodel = new UserModel();
+    $this->personmodel = new PersonModel();
   }
   public function index() {
     return view('login');
+  }
+  public function inscriptionIndex() {
+    return view('signup');
   }
   public function connexion() {
     $nom = $this->request->getJsonVar('nom');
     $prenom = $this->request->getJsonVar('prenom');
     $mdp = $this->request->getJsonVar('password');
-    $numRow = $this->userModel->getInfo($nom, $prenom)->countAllResults();
-    if($numRow <= 0) {
-      echo json_encode(['status' => 'user not found', 'status_code' => 404]);
-      return 404;
+    $numrow = $this->usermodel->getInfo($nom, $prenom)->countAll();
+    if($numrow <= 0) {
+      // echo json_encode(['status' => 'user not found', 'status_code' => 404]);
+      return $this->response
+                  ->setContentType('application/json')
+                  ->setStatusCode(404)
+                  ->setJSON(['status' => 'user not found']);
     }
-    $users = $this->userModel->getInfo($nom, $prenom)->get()->getResultArray();
+    $users = $this->usermodel->getinfo($nom, $prenom)->get()->getresultarray();
     foreach ($users as $user) {
-      # code...
-      // if(password_verify($mdp, $users['password']) {}
-        // if($users['est_actif'] == 1) {
-        //   echo json_encode(['status' => 'user already logged in' , 'status_code' => 403]);
-        //   return 403;
-        // } else if($this->userModel->connexion()){
-        //   echo json_encode(['status' => 'login successful', 'status_code' => 202]);
-        //   return 202;
-        // }
-      // }
-      if($this->userModel->verifyPassword($user['nom'], $user['prenom'], $mdp)) {
+      if($this->usermodel->verifyPassword($user['nom'], $user['prenom'], $mdp)) {
         if($user['est_actif'] == 1) {
-          json_encode(['status' => 'user already logged in', 'status_code' => 403]);
-          return 403;
-        } else if($this->userModel->connexion()) {
-          echo json_encode(['status' => 'loggin successful', 'status_code' => 200]);
-          return 0;
+          // json_encode(['status' => 'user already logged in', 'status_code' => 403]);
+          return $this->response
+                      ->setContentType('application/json')
+                      ->setStatusCode(403)
+                      ->setJSON(['status' => 'user already logged in']);
+        } else if($this->usermodel->connexion()) {
+          // echo json_encode(['status' => 'loggin successful', 'status_code' => 200]);
+          return $this->response
+                      ->setContentType('application/json')
+                      ->setStatusCode(200)
+                      ->setJSON(['status' => 'log in successful']);
         } 
       } else {
-        echo json_encode(['status' => 'incorrect password', 'status_code' => 403]);
-        return 403;
+        // echo json_encode(['status' => 'incorrect password', 'status_code' => 403]);
+        return $this->response
+                    ->setContentType('application/json')
+                    ->setStatusCode(403)
+                    ->setJSON(['status' => 'incorrect password']);
       }
     }
   }
   public function inscription() {
-    $userData = $this->request->getJSON(true);
-    if(!$this->personModel->exist($userData['nom'], $userData['prenom'])) {
-      echo json_encode(['status' => 'no person found for this name in MIT/MISA', 'status_code'=> 404]);
-      return 404;
-    } else if($this->userModel->hasAccount($userData['nom'], $userData['prenom'])) {
-      echo json_encode(['status' => 'user has already an account, abort...', 'status_code' => 400]);
-      return 500;
+    $userdata = $this->request->getJSON(true);
+    if(!$this->personmodel->exist($userdata['nom'], $userdata['prenom'])) {
+      // echo json_encode(['status' => 'no person found for this name in mit/misa', 'status_code'=> 404]);
+      return $this->response->setContentType('application/json')->setStatusCode(404)
+                  ->setJSON(['status' => 'no person found for this name MIT/MISA']);
+    } else if($this->usermodel->hasAccount($userdata['nom'], $userdata['prenom'])) {
+      // echo json_encode(['status' => 'user has already an account, abort...', 'status_code' => 400]);
+      return $this->response->setContentType('application/json')->setStatusCode(400)
+                  ->setJSON(['status' => 'user has already an account, Abort...']);
     } else {
-      $hashedPassword = password_hash($userData['password'], PASSWORD_BCRYPT);
-      $data = array('nom' => $userData['nom'], 'prenom' => $prenom, 'password' => $hashedPassword);
-      $this->inscription($data);
+      $hashedpassword = password_hash($userdata['password'], PASSWORD_BCRYPT);
+      $data = array('nom' => $userdata['nom'], 'prenom' => $prenom, 'password' => $hashedpassword);
+      $this->usermodel->inscription($data);
+      return $this->response->setContentType('application/json')->setStatusCode(201)->setJSON(['status' => 'registration successful']);
     }
-  }
-  public function inscriptionIndex() {
-    return view('signup');
   }
 }
 
