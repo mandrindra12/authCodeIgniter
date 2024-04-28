@@ -8,7 +8,7 @@ b.addEventListener('click', (e) => {
 });
 
 const login = async() => {
-    const prenom = document.querySelector("input[name='prenom']");
+    const prenom = document.querySelector("input[name='prenom']").value;
     const nom = document.querySelector("input[name='nom']").value;
     const password = document.querySelector("input[name='password']").value;
     if(username == '' || password == '') {
@@ -16,6 +16,7 @@ const login = async() => {
         popup.style.display = 'block';
         return ;
     }
+    HTTP_STATUS_CODE = 0;
     fetch('/connexion', {
         method: 'POST',
         headers: {
@@ -24,17 +25,17 @@ const login = async() => {
         body: JSON.stringify({nom, prenom, password})
     })
     .then(
-        resp => resp.json()
+      resp => {
+        HTTP_STATUS_CODE = resp.status
+        return resp.json()
+      }
     )
     .then(
         data => {
-            console.log(data)
-            if(data.status_code == 200) {
+            // console.log(data)
+            if(HTTP_STATUS_CODE == 200) {
           // ito no ovaina rehefa tiana anao redirection makany am page d'accueil
-                window.location.href = '/Accueil/index.php';
-            } else if (data.status_code == 403){
-                p_text.innerText = "L'utilisateur est deja connecte!";
-                popup.style.display = 'block';
+                window.location.href = '/accueil';
             } else {
                 p_text.innerText = data.status;
                 popup.style.display = 'block';    
