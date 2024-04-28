@@ -7,6 +7,7 @@ class UserModel extends Model {
   protected $table = 'utilisateurs';
   protected $builder;
   protected $db;
+  protected $primaryKey = 'id_utilisateur';
   // public $db = \Config\Database::connect();
   protected $allowedFields = ['id_utilisateur', 'id_personne', 'nom', 'prenoms', 'mot_de_passe', 'est_actif', 'statut'];
   public function __construct() {
@@ -21,32 +22,27 @@ class UserModel extends Model {
   // 
   public function connexion(string $nom, string $prenoms, string $mdp) : bool {
     $conditions = ['nom' => $nom, 'prenoms' => $prenoms, 'mot_de_passe' => $mdp];
-    $this->set(['est_actif', 1])->where($conditions)->update();
+    $this->builder->set('est_actif', 1)->where($conditions)->update();
     return true;
   }
   public function verifyPassword(string $nom, string $prenom, $mdp) {
     $conditions = ['nom' => $nom, 'prenoms' => $prenom];
     $users = $this->where($conditions)->get()->getResultArray();
     foreach ($users as $user) {
-      if(password_verify($mdp, $user['password'])) {
+      if(password_verify($mdp, $user['mot_de_passe'])) {
         return true;
       }
     }
     return false;
   }
   public function hasAccount($nom, $prenom) {
-    $allUser = $this->findAll();
-    foreach ($allUser as $user) {
-      # code...
-      if($user['nom'] == $nom and $user['prenom']) {
-        return true;
-      }
-    }
-    return false;
+    $c = array('nom' => $nom, 'prenoms' => $prenom);
+    $count = $this->where($c)->countAllResults();
+    return $count > 0;
   }
   public function getInfo($nom , $prenom ){  
     $conditions = ['nom' => $nom, 'prenoms' => $prenom];
-    return $this->builder->where($conditions);
+    return $this->where($conditions)->get()->getResultArray();
   }
 }
 
