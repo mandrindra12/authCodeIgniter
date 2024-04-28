@@ -6,8 +6,8 @@ use App\Models\UserModel;
 use App\Models\PersonModel;
 
 class UserController extends BaseController {
-  private $usermodel;
-  private $personmodel;
+  protected $usermodel;
+  protected $personmodel;
   public function __construct() {
     $this->usermodel = new UserModel();
     $this->personmodel = new PersonModel();
@@ -18,28 +18,36 @@ class UserController extends BaseController {
   public function inscriptionIndex() {
     return view('signup');
   }
+  public function accueil() {
+    return view('accueil');
+  }
   public function connexion() {
     $nom = $this->request->getJsonVar('nom');
     $prenom = $this->request->getJsonVar('prenom');
     $mdp = $this->request->getJsonVar('password');
-    $numrow = $this->usermodel->getInfo($nom, $prenom)->countAll();
-    if($numrow <= 0) {
+    // $nom = $this->request->getPost('nom');
+    // $prenom = $this->request->getPost('prenom');
+    // $mdp = $this->request->getPost('password');
+    // $numrow = 0;
+    // $hasAccount = $this->usermodel->hasAccount($nom, $prenom);
+    // return $this->response->setContentType('application/json')->setJSON(['status' => $nom, $prenom, $mdp]);
+    if(!$this->usermodel->hasAccount($nom, $prenom)) { 
       // echo json_encode(['status' => 'user not found', 'status_code' => 404]);
       return $this->response
                   ->setContentType('application/json')
                   ->setStatusCode(404)
                   ->setJSON(['status' => 'user not found']);
     }
-    $users = $this->usermodel->getinfo($nom, $prenom)->get()->getresultarray();
+    $users = $this->usermodel->getInfo($nom, $prenom);
     foreach ($users as $user) {
-      if($this->usermodel->verifyPassword($user['nom'], $user['prenom'], $mdp)) {
+      if($this->usermodel->verifyPassword($user['nom'], $user['prenoms'], $mdp)) {
         if($user['est_actif'] == 1) {
           // json_encode(['status' => 'user already logged in', 'status_code' => 403]);
           return $this->response
                       ->setContentType('application/json')
                       ->setStatusCode(403)
                       ->setJSON(['status' => 'user already logged in']);
-        } else if($this->usermodel->connexion()) {
+        } else if($this->usermodel->connexion($user['nom'], $user['prenoms'], $user['mot_de_passe'])) {
           // echo json_encode(['status' => 'loggin successful', 'status_code' => 200]);
           return $this->response
                       ->setContentType('application/json')
@@ -60,14 +68,20 @@ class UserController extends BaseController {
     if(!$this->personmodel->exist($userdata['nom'], $userdata['prenom'])) {
       // echo json_encode(['status' => 'no person found for this name in mit/misa', 'status_code'=> 404]);
       return $this->response->setContentType('application/json')->setStatusCode(404)
-                  ->setJSON(['status' => 'no person found for this name MIT/MISA']);
+                  ->setJSON(['status' => 'no person found for this name in MIT/MISA']);
     } else if($this->usermodel->hasAccount($userdata['nom'], $userdata['prenom'])) {
       // echo json_encode(['status' => 'user has already an account, abort...', 'status_code' => 400]);
       return $this->response->setContentType('application/json')->setStatusCode(400)
                   ->setJSON(['status' => 'user has already an account, Abort...']);
     } else {
+      $infoPerson = $this->personmodel->getRelativeInfo($userdata['nom'], $userdata['prenom']);
       $hashedpassword = password_hash($userdata['password'], PASSWORD_BCRYPT);
-      $data = array('nom' => $userdata['nom'], 'prenom' => $prenom, 'password' => $hashedpassword);
+      $data = array('nom' => $userdata['nom'],
+                    'prenoms' => $userdata['prenom'],
+                    'mot_de_passe' => $hashedpassword,
+                    'id_personne' => $infoPerson[0]['id_personne'],
+                    'statut' => $infoPerson[0]['id_statut']
+      );
       $this->usermodel->inscription($data);
       return $this->response->setContentType('application/json')->setStatusCode(201)->setJSON(['status' => 'registration successful']);
     }
