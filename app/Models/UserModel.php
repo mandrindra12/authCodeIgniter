@@ -20,7 +20,7 @@ class UserModel extends Model {
   }
   // 
   public function connexion(string $nom, string $prenoms, string $mdp) : bool {
-    $conditions = ['nom' => $nom, 'prenoms' => $prenoms, 'password' => $mdp];
+    $conditions = ['nom' => $nom, 'prenoms' => $prenoms, 'mot_de_passe' => $mdp];
     $this->set(['est_actif', 1])->where($conditions)->update();
     return true;
   }
