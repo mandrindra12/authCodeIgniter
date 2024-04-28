@@ -24,8 +24,7 @@ class PersonModel extends Model {
   public function exist($n, $p) {
     $c = ['nom' => $n, 'prenoms' => $p];
     $count = $this->where($c)->countAllResults();
-    if($count > 0) return true;
-    return false;
+    return $count > 0;
   }
 }
 

@@ -8,7 +8,7 @@ class UserModel extends Model {
   protected $builder;
   protected $db;
   // public $db = \Config\Database::connect();
-  protected $allowedFields = ['id_utilisateurs', 'id_personne', 'nom', 'prenoms', 'password', 'est_actif', 'statut'];
+  protected $allowedFields = ['id_utilisateur', 'id_personne', 'nom', 'prenoms', 'mot_de_passe', 'est_actif', 'statut'];
   public function __construct() {
     // $builder = $db->table($this->table);
     $this->db = db_connect();
