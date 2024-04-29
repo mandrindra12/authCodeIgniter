@@ -32,7 +32,6 @@ const login = async() => {
     )
     .then(
         data => {
-            // console.log(data)
             if(HTTP_STATUS_CODE == 200) {
           // ito no ovaina rehefa tiana anao redirection makany am page d'accueil
                 window.location.href = '/accueil';
