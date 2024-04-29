@@ -19,7 +19,12 @@ class UserController extends BaseController {
     return view('signup');
   }
   public function accueil() {
-    return view('accueil');
+    $s = \Config\Services::session();
+    $data = $s->get('UserConnecter');
+    if($data == null) {
+      return redirect()->route('/');
+    }
+    return view('accueil', ['data' => $data]);
   }
   public function connexion() {
     $nom = $this->request->getJsonVar('nom');
@@ -31,7 +36,10 @@ class UserController extends BaseController {
     // $numrow = 0;
     // $hasAccount = $this->usermodel->hasAccount($nom, $prenom);
     // return $this->response->setContentType('application/json')->setJSON(['status' => $nom, $prenom, $mdp]);
-    if(!$this->usermodel->hasAccount($nom, $prenom)) { 
+    $userStatus = $this->usermodel->hasAccount($nom, $prenom);
+    $status = $userStatus[0]['statut'];
+    // return $this->response->setJSON(['status' => $status]);
+    if($status <= 0){ 
       // echo json_encode(['status' => 'user not found', 'status_code' => 404]);
       return $this->response
                   ->setContentType('application/json')
@@ -49,6 +57,15 @@ class UserController extends BaseController {
                       ->setJSON(['status' => 'user already logged in']);
         } else if($this->usermodel->connexion($user['nom'], $user['prenoms'], $user['mot_de_passe'])) {
           // echo json_encode(['status' => 'loggin successful', 'status_code' => 200]);
+          
+          $data = [
+            'nom' => $user["nom"],
+            'prenom' => $user["prenoms"],
+            'mot_de_passe' => $user["mot_de_passe"],
+            'statut' => $status
+          ];
+          // if($user <= 0) return redirect()->route('/');
+          $this->setSession($data);
           return $this->response
                       ->setContentType('application/json')
                       ->setStatusCode(200)
@@ -85,6 +102,11 @@ class UserController extends BaseController {
       $this->usermodel->inscription($data);
       return $this->response->setContentType('application/json')->setStatusCode(201)->setJSON(['status' => 'registration successful']);
     }
+  }
+  private function setSession($data) {
+    $session = \Config\Services::session(); // charger session
+    $session->set('UserConnecter', $data); 
+
   }
 }
 

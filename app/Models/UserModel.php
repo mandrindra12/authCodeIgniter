@@ -37,8 +37,9 @@ class UserModel extends Model {
   }
   public function hasAccount($nom, $prenom) {
     $c = array('nom' => $nom, 'prenoms' => $prenom);
-    $count = $this->where($c)->countAllResults();
-    return $count > 0;
+    $count = 0;
+    $count = $this->builder->select('statut')->where($c)->get()->getResultArray();
+    return $count;
   }
   public function getInfo($nom , $prenom ){  
     $conditions = ['nom' => $nom, 'prenoms' => $prenom];
