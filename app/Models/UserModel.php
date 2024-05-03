@@ -41,9 +41,12 @@ class UserModel extends Model {
     $count = $this->builder->select('statut')->where($c)->get()->getResultArray();
     return $count;
   }
-  public function getInfo($nom , $prenom ){  
+  public function getInfo($nom , $prenom ) {  
     $conditions = ['nom' => $nom, 'prenoms' => $prenom];
     return $this->where($conditions)->get()->getResultArray();
+  }
+  public function deconnexion($id) {
+    $this->builder->set('est_actif', 0)->where('id_personne', $id)->update();
   }
 }
 
