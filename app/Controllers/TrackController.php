@@ -9,7 +9,6 @@ class TrackController extends BaseController {
   private $userModel;
   public function __construct(){
     $this->trackModel = new TrackModels();
-    $this->userModel = new UserModel();
   }
   public function track_change(string $tableName, string $action) {
     $session = \Config\Services::session();
