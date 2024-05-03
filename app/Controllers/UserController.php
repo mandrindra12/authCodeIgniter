@@ -59,6 +59,7 @@ class UserController extends BaseController {
           // echo json_encode(['status' => 'loggin successful', 'status_code' => 200]);
           
           $data = [
+            'id' => $user['id_personne'],
             'nom' => $user["nom"],
             'prenom' => $user["prenoms"],
             'mot_de_passe' => $user["mot_de_passe"],
@@ -106,7 +107,6 @@ class UserController extends BaseController {
   private function setSession($data) {
     $session = \Config\Services::session(); // charger session
     $session->set('UserConnecter', $data); 
-
   }
 }
 
