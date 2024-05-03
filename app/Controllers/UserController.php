@@ -112,6 +112,8 @@ class UserController extends BaseController {
     $session = \Config\Services::session();
     $sessionData = $session->get('UserConnecter');
     $this->usermodel->deconnexion($sessionData['id']);
+    $session->destroy();
+    return redirect()->route('/');
   }
 }
 
