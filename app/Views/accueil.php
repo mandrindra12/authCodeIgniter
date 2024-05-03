@@ -9,7 +9,8 @@
       echo "Mpianatra" . $data['prenom'];
     }
 
-  ?>
+    ?>
+    <a href='/deconnexion'> deconnexion </a>
   <body>
 
 </html>
