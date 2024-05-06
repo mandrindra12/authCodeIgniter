@@ -25,6 +25,22 @@
             padding: 40px;
             position: relative;
     }
+
+    .link button {
+            width: 95%;
+            background-color: #FF3131;
+            color: #000;
+            /* margin: auto; */
+            border: none;
+            border-radius: 10px;
+            padding: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+    }
+    .link button:hover {
+            background-color: #202124;
+            color: #fff;
+    }
   </style>
   <title>Accueil test</title>
 </head>
@@ -43,7 +59,11 @@
           echo "Mpianatra" . $data['prenom'];
         }
         ?>
-        <a href='/deconnexion'> deconnexion </a>
+        <a href='/deconnexion' class="link"> 
+          <button>
+          deconnexion 
+          </button>  
+        </a>
     </div>
   <body>
 </html>
