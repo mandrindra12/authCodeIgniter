@@ -20,8 +20,8 @@ class UserModel extends Model {
     return $this->insert($data);
   }
   // 
-  public function connexion(string $nom, string $prenoms, string $mdp) : bool {
-    $conditions = ['nom' => $nom, 'prenoms' => $prenoms, 'mot_de_passe' => $mdp];
+  public function connexion(string $nom, string $prenoms): bool {
+    $conditions = ['nom' => $nom, 'prenoms' => $prenoms];
     $this->builder->set('est_actif', 1)->where($conditions)->update();
     return true;
   }
