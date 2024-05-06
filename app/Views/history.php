@@ -5,6 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MIT | History</title>
     <style>
+        body {
+            background-color: #f1f1f1;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100vw;
+            height: 100vh;
+        }
         table {
             width: 100%;
             border-collapse: collapse;
