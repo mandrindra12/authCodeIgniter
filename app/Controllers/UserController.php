@@ -26,19 +26,43 @@ class UserController extends BaseController {
     }
     return view('accueil', ['data' => $data]);
   }
+  public function qrConnexion() {
+    $nom = $this->request->getGet('Nom');
+    $prenom = $this->request->getGet('Prenom');
+    $users = $this->usermodel->getInfo($nom, $prenom);
+    $user = $users[0];
+    $userStatus = $this->usermodel->hasAccount($nom, $prenom);
+    $status = $userStatus[0]['statut'];
+    if($status > 0) {
+      if($user['est_actif'] == 1) {
+        // json_encode(['status' => 'user already logged in', 'status_code' => 403]);
+        return $this->response
+                    ->setContentType('application/json')
+                    ->setStatusCode(403)
+                    ->setJSON(['status' => 'user already logged in']);
+      }
+      $this->usermodel->connexion($user['nom'], $user['prenoms']);
+      $data = [
+        'id' => $user['id_personne'],
+        'nom' => $user["nom"],
+        'prenom' => $user["prenoms"],
+        'mot_de_passe' => $user["mot_de_passe"],
+        'statut' => $status
+      ];
+      $this->setSession($data);
+      return $this->response
+                  ->setContentType('application/json')
+                  ->setStatusCode(200)
+                  ->setJSON(['status' => 'log in successful']);
+    }
+  }
   public function connexion() {
     $nom = $this->request->getJsonVar('nom');
     $prenom = $this->request->getJsonVar('prenom');
     $mdp = $this->request->getJsonVar('password');
-    // $nom = $this->request->getPost('nom');
-    // $prenom = $this->request->getPost('prenom');
-    // $mdp = $this->request->getPost('password');
-    // $numrow = 0;
-    // $hasAccount = $this->usermodel->hasAccount($nom, $prenom);
-    // return $this->response->setContentType('application/json')->setJSON(['status' => $nom, $prenom, $mdp]);
+    $users = $this->usermodel->getInfo($nom, $prenom);
     $userStatus = $this->usermodel->hasAccount($nom, $prenom);
     $status = $userStatus[0]['statut'];
-    // return $this->response->setJSON(['status' => $status]);
     if($status <= 0){ 
       // echo json_encode(['status' => 'user not found', 'status_code' => 404]);
       return $this->response
@@ -46,7 +70,6 @@ class UserController extends BaseController {
                   ->setStatusCode(404)
                   ->setJSON(['status' => 'user not found']);
     }
-    $users = $this->usermodel->getInfo($nom, $prenom);
     foreach ($users as $user) {
       if($this->usermodel->verifyPassword($user['nom'], $user['prenoms'], $mdp)) {
         if($user['est_actif'] == 1) {
@@ -55,7 +78,7 @@ class UserController extends BaseController {
                       ->setContentType('application/json')
                       ->setStatusCode(403)
                       ->setJSON(['status' => 'user already logged in']);
-        } else if($this->usermodel->connexion($user['nom'], $user['prenoms'], $user['mot_de_passe'])) {
+        } else if($this->usermodel->connexion($user['nom'], $user['prenoms'])) {
           // echo json_encode(['status' => 'loggin successful', 'status_code' => 200]);
           
           $data = [
