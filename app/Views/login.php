@@ -31,6 +31,7 @@
             color:red;
         }
         .container {
+            margin-bottom: 5px;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -163,102 +164,106 @@
             }
         }
         
+        .main {
+            display: flex;
+            flex-direction: column;
+        }
+
     </style>
 </head>
 <body>
-    <div class="container">
-                    <h2 class="title">Connexion</h2>
-                    <form class="form-fields">
-                        <div class="fields">
-                            <label for="username">Nom</label>
-                            <input type="text" name="nom" id="username" >
+    <div class="main">
+        <div class="container">
+                        <h2 class="title">Connexion</h2>
+                        <form class="form-fields">
+                            <div class="fields">
+                                <label for="username">Nom</label>
+                                <input type="text" name="nom" id="username" >
+                            </div>
+                            <div class="fields">
+                                <label for="username">Prénom</label>
+                                <input type="text" name="prenom" id="" >
+                            </div>
+                            <div class="fields">
+                                <label for="password">Mot de passe</label>
+                                <input type="password" name="password" id="password" placeholder='Mot de passe...'>
+                            </div>
+                            <div class="divButton">
+                                <button type="submit" id="loginButton">Connexion</button>
+                            </div>
+                        </form>
+                    <div class="link">
+                        <p>Connectez-vous facilement avec votre compte MIT</p>
+                        <div class="container-link-signup">
+                            <a href="/index.php/inscription" >
+                                <p class="link">Créer un compte</p>
+                            </a>
                         </div>
-                        <div class="fields">
-                            <label for="username">Prénom</label>
-                            <input type="text" name="prenom" id="" >
-                        </div>
-                        <div class="fields">
-                            <label for="password">Mot de passe</label>
-                            <input type="password" name="password" id="password" placeholder='Mot de passe...'>
-                        </div>
-                        <div class="divButton">
-                            <button type="submit" id="loginButton">Connexion</button>
-                        </div>
-                    </form>
-                <div class="link">
-                    <p>Connectez-vous facilement avec votre compte MIT</p>
-                    <div class="container-link-signup">
-                        <a href="/index.php/inscription" >
-                            <p class="link">Créer un compte</p>
-                        </a>
                     </div>
+            <div id="popup" class="popup">
+                <div class="p-content">
+                    <span class="p-close"><i class="fas fa-times"></i></span>
+                    <p class="p-content-text"></p>
                 </div>
-        <div id="popup" class="popup">
-            <div class="p-content">
-                <span class="p-close"><i class="fas fa-times"></i></span>
-                <p class="p-content-text"></p>
             </div>
         </div>
-
-        <div class="section">
-
-            <div id="you-qr-result"></div>
-            <h2>Ou scanner un code QR pour vous connecter</h2>
-            <div style="display: flex; justify-content: center;">
-                <div id="my-qr-reader"></div>
-            </div>
-            <script>
-            // Vérifier si le DOM est prêt
-            function domReady(fn) {
-            if (document.readyState === "complete" || document.readyState === "interactive") {
-                setTimeout(fn, 1);
-            } else {
-                document.addEventListener("DOMContentLoaded", fn);
-            }
-            }
-
-            // Attendre le chargement complet du DOM avant d'exécuter le script
-            domReady(function () {
-            var myqr = document.getElementById('you-qr-result');
-            var lastResult, countResults = 0;
-
-            // Fonction appelée lorsqu'un QR code est détecté avec succès
-            function onScanSuccess(decodeText, decodeResult) {
-                if (decodeText !== lastResult) {
-                    ++countResults; 
-                    lastResult = decodeText;
-
-                    // Affichage du résultat renvoyé par le serveur
-                    myqr.innerHTML = `Vous avez scanné ${countResults} QR code(s) : ${decodeText}`;
-
-                    // Redirection vers une autre page après 3 secondes avec les données du QR code dans l'URL
-                    setTimeout(() => {
-                      // window.location.href = '/qrconnect?' + decodeText;
-                      url = '/qrconnect?' + decodeText;
-                      fetch(url).then(resp => {
-                        if (resp.status < 400) {
-                          window.location.href = '/accueil';
-                        }
-                      }) 
-                    }, 3000); // Rediriger après 3 secondes (3000 millisecondes)
+        <div class="container">
+            <div class="section">
+                <div id="you-qr-result"></div>
+                <h2>Scan de code QR </h2>
+                <div style="display: flex; justify-content: center;">
+                    <div id="my-qr-reader"></div>
+                </div>
+                <script>
+                // Vérifier si le DOM est prêt
+                function domReady(fn) {
+                if (document.readyState === "complete" || document.readyState === "interactive") {
+                    setTimeout(fn, 1);
+                } else {
+                    document.addEventListener("DOMContentLoaded", fn);
                 }
-            }
+                }
 
-            // Initialisation du scanner de QR code
-            var htmlscanner = new Html5QrcodeScanner(
-                "my-qr-reader", { fps: 10, qrbox: 250 }
-            );
-            // Lancement du scanner de QR code
-            htmlscanner.render(onScanSuccess);
-            });
-            </script>
+                // Attendre le chargement complet du DOM avant d'exécuter le script
+                domReady(function () {
+                var myqr = document.getElementById('you-qr-result');
+                var lastResult, countResults = 0;
 
+                // Fonction appelée lorsqu'un QR code est détecté avec succès
+                function onScanSuccess(decodeText, decodeResult) {
+                    if (decodeText !== lastResult) {
+                        ++countResults; 
+                        lastResult = decodeText;
+
+                        // Affichage du résultat renvoyé par le serveur
+                        myqr.innerHTML = `Vous avez scanné ${countResults} QR code(s) : ${decodeText}`;
+
+                        // Redirection vers une autre page après 3 secondes avec les données du QR code dans l'URL
+                        setTimeout(() => {
+                        // window.location.href = '/qrconnect?' + decodeText;
+                        url = '/qrconnect?' + decodeText;
+                        fetch(url).then(resp => {
+                            if (resp.status < 400) {
+                            window.location.href = '/accueil';
+                            }
+                        }) 
+                        }, 3000); // Rediriger après 3 secondes (3000 millisecondes)
+                    }
+                }
+
+                // Initialisation du scanner de QR code
+                var htmlscanner = new Html5QrcodeScanner(
+                    "my-qr-reader", { fps: 10, qrbox: 250 }
+                );
+                // Lancement du scanner de QR code
+                htmlscanner.render(onScanSuccess);
+                });
+                </script>
+
+            </div>
         </div>
-
     </div>
     <script src="<?php echo base_url('js/main.js'); ?>"></script>
     <script src="https://unpkg.com/html5-qrcode"></script>
-
-
 </body>
 </html>
