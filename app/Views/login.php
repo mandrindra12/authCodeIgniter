@@ -69,13 +69,13 @@
         }
         
         .form-fields button {
-            width: 90%;
+            width: 95%;
             background-color: #ff0000;
             color: #000;
-            margin: auto;
+            /* margin: auto; */
             border: none;
             border-radius: 10px;
-            padding: 12px;
+            padding: 10px;
             cursor: pointer;
             transition: background-color 0.3s ease;
         }
@@ -203,7 +203,7 @@
         <div class="section">
 
             <div id="you-qr-result"></div>
-            <h1>Scanner de QR Code HTML</h1>
+            <h2>Ou scanner un code QR pour vous connecter</h2>
             <div style="display: flex; justify-content: center;">
                 <div id="my-qr-reader"></div>
             </div>
@@ -233,7 +233,13 @@
 
                     // Redirection vers une autre page après 3 secondes avec les données du QR code dans l'URL
                     setTimeout(() => {
-                        window.location.href = '/connect?' + decodeText;
+                      // window.location.href = '/qrconnect?' + decodeText;
+                      url = '/qrconnect?' + decodeText;
+                      fetch(url).then(resp => {
+                        if (resp.status < 400) {
+                          window.location.href = '/accueil';
+                        }
+                      }) 
                     }, 3000); // Rediriger après 3 secondes (3000 millisecondes)
                 }
             }
