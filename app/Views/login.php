@@ -80,6 +80,24 @@
             cursor: pointer;
             transition: background-color 0.3s ease;
         }
+
+        button {
+            margin-top:5px;
+            width: 95%;
+            background-color: #ccc;
+            color: #000;
+            /* margin: auto; */
+            border: none;
+            border-radius: 10px;
+            padding: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        button:hover {
+            background-color: #202124;
+            color: #fff;
+        }
         
         .form-fields button:hover {
             background-color: #202124;
@@ -173,7 +191,7 @@
 </head>
 <body>
     <div class="main">
-        <div class="container">
+        <div class="container" id="formContainer" style="display:flex;">
                         <h2 class="title">Connexion</h2>
                         <form class="form-fields">
                             <div class="fields">
@@ -206,8 +224,11 @@
                     <p class="p-content-text"></p>
                 </div>
             </div>
+            <button id="qrButton">
+                Scanner un QR code
+            </button>
         </div>
-        <div class="container">
+        <div class="container" id="qrContainer" style="display:none;">
             <div class="section">
                 <div id="you-qr-result"></div>
                 <h2>Scan de code QR </h2>
@@ -259,11 +280,31 @@
                 htmlscanner.render(onScanSuccess);
                 });
                 </script>
-
+            <button id="formButton">
+                Formulaire normale
+            </button>
             </div>
         </div>
     </div>
     <script src="<?php echo base_url('js/main.js'); ?>"></script>
     <script src="https://unpkg.com/html5-qrcode"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var qrButton = document.getElementById('qrButton');
+            var qrContainer = document.getElementById('qrContainer');
+            var formContainer = document.getElementById('formContainer');
+            var formButton = document.getElementById('formButton');
+
+            formButton.addEventListener('click', function() {
+                formContainer.style.display = 'flex';
+                qrContainer.style.display = 'none';
+            });
+
+            qrButton.addEventListener('click', function() {
+                qrContainer.style.display = 'flex';
+                formContainer.style.display = 'none';
+            });
+        });
+    </script>
 </body>
 </html>
