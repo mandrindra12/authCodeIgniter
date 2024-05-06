@@ -70,7 +70,7 @@
         
         .form-fields button {
             width: 90%;
-            background-color: #ff0000;
+            background-color: #FF3131;
             color: #000;
             margin: auto;
             border: none;
