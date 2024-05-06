@@ -188,7 +188,7 @@
                 <div class="link">
                     <p>Connectez-vous facilement avec votre compte MIT</p>
                     <div class="container-link-signup">
-                        <a href="/inscription" >
+                        <a href="/index.php/inscription" >
                             <p class="link">Créer un compte</p>
                         </a>
                     </div>
@@ -199,7 +199,60 @@
                 <p class="p-content-text"></p>
             </div>
         </div>
+
+        <div class="section">
+
+            <div id="you-qr-result"></div>
+            <h1>Scanner de QR Code HTML</h1>
+            <div style="display: flex; justify-content: center;">
+                <div id="my-qr-reader"></div>
+            </div>
+            <script>
+            // Vérifier si le DOM est prêt
+            function domReady(fn) {
+            if (document.readyState === "complete" || document.readyState === "interactive") {
+                setTimeout(fn, 1);
+            } else {
+                document.addEventListener("DOMContentLoaded", fn);
+            }
+            }
+
+            // Attendre le chargement complet du DOM avant d'exécuter le script
+            domReady(function () {
+            var myqr = document.getElementById('you-qr-result');
+            var lastResult, countResults = 0;
+
+            // Fonction appelée lorsqu'un QR code est détecté avec succès
+            function onScanSuccess(decodeText, decodeResult) {
+                if (decodeText !== lastResult) {
+                    ++countResults; 
+                    lastResult = decodeText;
+
+                    // Affichage du résultat renvoyé par le serveur
+                    myqr.innerHTML = `Vous avez scanné ${countResults} QR code(s) : ${decodeText}`;
+
+                    // Redirection vers une autre page après 3 secondes avec les données du QR code dans l'URL
+                    setTimeout(() => {
+                        window.location.href = '/connect?' + decodeText;
+                    }, 3000); // Rediriger après 3 secondes (3000 millisecondes)
+                }
+            }
+
+            // Initialisation du scanner de QR code
+            var htmlscanner = new Html5QrcodeScanner(
+                "my-qr-reader", { fps: 10, qrbox: 250 }
+            );
+            // Lancement du scanner de QR code
+            htmlscanner.render(onScanSuccess);
+            });
+            </script>
+
+        </div>
+
     </div>
     <script src="<?php echo base_url('js/main.js'); ?>"></script>
+    <script src="https://unpkg.com/html5-qrcode"></script>
+
+
 </body>
 </html>
