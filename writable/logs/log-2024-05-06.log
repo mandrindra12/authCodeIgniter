@@ -1,0 +1,50 @@
+ERROR - 2024-05-06 17:49:47 --> Error connecting to the database: mysqli_sql_exception: Access denied for user 'root'@'localhost' in /home/rakoto/Documents/PHP/codeIgniter/authcodeIgniter/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php:186
+Stack trace:
+#0 /home/rakoto/Documents/PHP/codeIgniter/authcodeIgniter/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php(186): mysqli->real_connect()
+#1 /home/rakoto/Documents/PHP/codeIgniter/authcodeIgniter/vendor/codeigniter4/framework/system/Database/BaseConnection.php(421): CodeIgniter\Database\MySQLi\Connection->connect()
+#2 /home/rakoto/Documents/PHP/codeIgniter/authcodeIgniter/vendor/codeigniter4/framework/system/Database/BaseConnection.php(604): CodeIgniter\Database\BaseConnection->initialize()
+#3 /home/rakoto/Documents/PHP/codeIgniter/authcodeIgniter/vendor/codeigniter4/framework/system/Database/BaseBuilder.php(1629): CodeIgniter\Database\BaseConnection->query()
+#4 /home/rakoto/Documents/PHP/codeIgniter/authcodeIgniter/vendor/codeigniter4/framework/system/Model.php(919): CodeIgniter\Database\BaseBuilder->get()
+#5 /home/rakoto/Documents/PHP/codeIgniter/authcodeIgniter/app/Models/UserModel.php(46): CodeIgniter\Model->__call()
+#6 /home/rakoto/Documents/PHP/codeIgniter/authcodeIgniter/app/Controllers/UserController.php(63): App\Models\UserModel->getInfo()
+#7 /home/rakoto/Documents/PHP/codeIgniter/authcodeIgniter/vendor/codeigniter4/framework/system/CodeIgniter.php(933): App\Controllers\UserController->connexion()
+#8 /home/rakoto/Documents/PHP/codeIgniter/authcodeIgniter/vendor/codeigniter4/framework/system/CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController()
+#9 /home/rakoto/Documents/PHP/codeIgniter/authcodeIgniter/vendor/codeigniter4/framework/system/CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest()
+#10 /home/rakoto/Documents/PHP/codeIgniter/authcodeIgniter/vendor/codeigniter4/framework/system/Boot.php(312): CodeIgniter\CodeIgniter->run()
+#11 /home/rakoto/Documents/PHP/codeIgniter/authcodeIgniter/vendor/codeigniter4/framework/system/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+#12 /home/rakoto/Documents/PHP/codeIgniter/authcodeIgniter/public/index.php(56): CodeIgniter\Boot::bootWeb()
+#13 /home/rakoto/Documents/PHP/codeIgniter/authcodeIgniter/vendor/codeigniter4/framework/system/Commands/Server/rewrite.php(49): require_once('...')
+#14 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Access denied for user '****'@'localhost' in /home/rakoto/Documents/PHP/codeIgniter/authcodeIgniter/vendor/codeigniter4/framework/system/Database/MySQLi/Connection.php:231
+Stack trace:
+#0 /home/rakoto/Documents/PHP/codeIgniter/authcodeIgniter/vendor/codeigniter4/framework/system/Database/BaseConnection.php(421): CodeIgniter\Database\MySQLi\Connection->connect()
+#1 /home/rakoto/Documents/PHP/codeIgniter/authcodeIgniter/vendor/codeigniter4/framework/system/Database/BaseConnection.php(604): CodeIgniter\Database\BaseConnection->initialize()
+#2 /home/rakoto/Documents/PHP/codeIgniter/authcodeIgniter/vendor/codeigniter4/framework/system/Database/BaseBuilder.php(1629): CodeIgniter\Database\BaseConnection->query()
+#3 /home/rakoto/Documents/PHP/codeIgniter/authcodeIgniter/vendor/codeigniter4/framework/system/Model.php(919): CodeIgniter\Database\BaseBuilder->get()
+#4 /home/rakoto/Documents/PHP/codeIgniter/authcodeIgniter/app/Models/UserModel.php(46): CodeIgniter\Model->__call()
+#5 /home/rakoto/Documents/PHP/codeIgniter/authcodeIgniter/app/Controllers/UserController.php(63): App\Models\UserModel->getInfo()
+#6 /home/rakoto/Documents/PHP/codeIgniter/authcodeIgniter/vendor/codeigniter4/framework/system/CodeIgniter.php(933): App\Controllers\UserController->connexion()
+#7 /home/rakoto/Documents/PHP/codeIgniter/authcodeIgniter/vendor/codeigniter4/framework/system/CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController()
+#8 /home/rakoto/Documents/PHP/codeIgniter/authcodeIgniter/vendor/codeigniter4/framework/system/CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest()
+#9 /home/rakoto/Documents/PHP/codeIgniter/authcodeIgniter/vendor/codeigniter4/framework/system/Boot.php(312): CodeIgniter\CodeIgniter->run()
+#10 /home/rakoto/Documents/PHP/codeIgniter/authcodeIgniter/vendor/codeigniter4/framework/system/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+#11 /home/rakoto/Documents/PHP/codeIgniter/authcodeIgniter/public/index.php(56): CodeIgniter\Boot::bootWeb()
+#12 /home/rakoto/Documents/PHP/codeIgniter/authcodeIgniter/vendor/codeigniter4/framework/system/Commands/Server/rewrite.php(49): require_once('...')
+#13 {main}
+CRITICAL - 2024-05-06 17:49:47 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [MySQLi]: Access denied for user '****'@'localhost'
+[Method: POST, Route: connexion]
+in SYSTEMPATH/Database/BaseConnection.php on line 457.
+ 1 SYSTEMPATH/Database/BaseConnection.php(604): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH/Database/BaseBuilder.php(1629): CodeIgniter\Database\BaseConnection->query()
+ 3 SYSTEMPATH/Model.php(919): CodeIgniter\Database\BaseBuilder->get()
+ 4 APPPATH/Models/UserModel.php(46): CodeIgniter\Model->__call()
+ 5 APPPATH/Controllers/UserController.php(63): App\Models\UserModel->getInfo()
+ 6 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\UserController->connexion()
+ 7 SYSTEMPATH/CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController()
+ 8 SYSTEMPATH/CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest()
+ 9 SYSTEMPATH/Boot.php(312): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+11 FCPATH/index.php(56): CodeIgniter\Boot::bootWeb()
+12 SYSTEMPATH/Commands/Server/rewrite.php(49): require_once('/home/rakoto/Documents/PHP/codeIgniter/authcodeIgniter/public/index.php')
