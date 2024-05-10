@@ -137,8 +137,23 @@
             height: 100%;
             overflow: auto;
             background-color: rgba(0, 0, 0, 0.4);
+            align-items: center;
+            justify-content: center;
         }
-        
+        .p-content{
+            margin-bottom: 5px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: #fff;
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            position: relative;
+            max-width: 300px;
+            width: 80%;
+        }
         
  
         
