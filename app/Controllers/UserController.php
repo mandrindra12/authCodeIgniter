@@ -35,7 +35,7 @@ class UserController extends BaseController {
     $status = $userStatus[0]['statut'];
     if($status > 0) {
       if($user['est_actif'] == 1) {
-        // json_encode(['status' => 'user already logged in', 'status_code' => 403]);
+        // json_encode(['status' => 'user already logged in', 'status_code' => 200]);
         return $this->response
                     ->setContentType('application/json')
                     ->setStatusCode(403)
@@ -73,7 +73,7 @@ class UserController extends BaseController {
     foreach ($users as $user) {
       if($this->usermodel->verifyPassword($user['nom'], $user['prenoms'], $mdp)) {
         if($user['est_actif'] == 1) {
-          // json_encode(['status' => 'user already logged in', 'status_code' => 403]);
+          // json_encode(['status' => 'user already logged in', 'status_code' => 200]);
           return $this->response
                       ->setContentType('application/json')
                       ->setStatusCode(403)
@@ -96,7 +96,7 @@ class UserController extends BaseController {
                       ->setJSON(['status' => 'log in successful']);
         } 
       } else {
-        // echo json_encode(['status' => 'incorrect password', 'status_code' => 403]);
+        // echo json_encode(['status' => 'incorrect password', 'status_code' => 200]);
         return $this->response
                     ->setContentType('application/json')
                     ->setStatusCode(403)

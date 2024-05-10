@@ -148,23 +148,8 @@
             height: 100%;
             overflow: auto;
             background-color: rgba(0, 0, 0, 0.4);
-            align-items: center;
-            justify-content: center;
         }
-        .p-content{
-            margin-bottom: 5px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            background-color: #fff;
-            border-radius: 20px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-            padding: 40px;
-            position: relative;
-            max-width: 300px;
-            width: 80%;
-        }
+        
         
  
         
@@ -254,6 +239,8 @@
                 Scanner un QR code
             </button>
         </div>
+        <script src="<?php echo base_url('js/main.js'); ?>"></script>
+        <script src="<?= base_url('js/qr.js');?>"></script>
         <div class="container" id="qrContainer" style="display:none;">
             <div class="section">
                 <div id="you-qr-result"></div>
@@ -286,15 +273,28 @@
                         myqr.innerHTML = `Vous avez scanné ${countResults} QR code(s) : ${decodeText}`;
 
                         // Redirection vers une autre page après 3 secondes avec les données du QR code dans l'URL
-                        setTimeout(() => {
+                        // setTimeout(() => {
                         // window.location.href = '/qrconnect?' + decodeText;
                         url = '/qrconnect?' + decodeText;
+                        let statusCode = 800;
                         fetch(url).then(resp => {
-                            if (resp.status < 400) {
-                            window.location.href = '/accueil';
+                            statusCode = resp.status;
+                            return resp.json();
+                        }).then(
+                            data => {
+                                if(statusCode < 400) {
+                                window.location.href = '/accueil';
+                                return;
+                            } else {
+                                console.log("mandalo");
+                                const popup = document.querySelector("#popup");
+                                const p_text = document.querySelector('.p-content-text');
+                                p_text.innerText = data.status;
+                                popup.style.display = 'block';
+                                return;
                             }
-                        }) 
-                        }, 3000); // Rediriger après 3 secondes (3000 millisecondes)
+                        });
+                        // }, 3000); // Rediriger après 3 secondes (3000 millisecondes)
                     }
                 }
 
@@ -312,8 +312,7 @@
             </div>
         </div>
     </div>
-    <script src="<?php echo base_url('js/main.js'); ?>"></script>
-    <script src="https://unpkg.com/html5-qrcode"></script>
+    
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             var qrButton = document.getElementById('qrButton');
@@ -331,6 +330,14 @@
                 formContainer.style.display = 'none';
             });
         });
+        close.onclick = () => {
+            popup.style.display = 'none';
+        }
+        window.onclick = e => {
+            if (e.target == popup) {
+                popup.style.display = 'none';
+            }
+        }
     </script>
 </body>
 </html>
