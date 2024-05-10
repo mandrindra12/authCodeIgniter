@@ -37,7 +37,7 @@ const login = async() => {
                 window.location.href = '/accueil';
             } else {
                 p_text.innerText = data.status;
-                popup.style.display = 'block';    
+                popup.style.display = 'flex';    
             }   
 
         }
