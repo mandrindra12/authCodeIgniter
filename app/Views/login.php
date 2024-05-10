@@ -69,24 +69,24 @@
             align-items: center;
         }
         
-        .form-fields button {
+        /* .form-fields button {
             width: 95%;
             background-color: #FF3131;
             color: #000;
-            /* margin: auto; */
+           
             border: none;
             border-radius: 10px;
             padding: 10px;
             cursor: pointer;
             transition: background-color 0.3s ease;
-        }
+        } */
 
-        button {
+        /* button {
             margin-top:5px;
             width: 95%;
             background-color: #ccc;
             color: #000;
-            /* margin: auto; */
+            
             border: none;
             border-radius: 10px;
             padding: 10px;
@@ -97,10 +97,51 @@
         button:hover {
             background-color: #202124;
             color: #fff;
-        }
+        } */
         
+        button {
+        --color: red;
+        font-family: inherit;
+        display: inline-block;
+        width: 90%;
+        height: 2.6em;
+        line-height: 2.5em;
+        overflow: hidden;
+        margin: 20px;
+        font-size: 17px;
+        z-index: 1;
+        color: var(--color);
+        border: 2px solid var(--color);
+        border-radius: 6px;
+        position: relative;
+        }
+
+        button::before {
+        position: absolute;
+        content: "";
+        background: var(--color);
+        width: 600px;
+        height: 800px;
+        z-index: -1;
+        border-radius: 50%;
+        }
+
+        button:hover {
+        color: white;
+        }
+
+        button:before {
+        top: 100%;
+        left: 100%;
+        transition: .3s all;
+        }
+
+        button:hover::before {
+        top: -110px;
+        left: -110px;
+        }
+
         .form-fields button:hover {
-            background-color: #202124;
             color: #fff;
         }
         
