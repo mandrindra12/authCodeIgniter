@@ -69,36 +69,6 @@
             align-items: center;
         }
         
-        /* .form-fields button {
-            width: 95%;
-            background-color: #FF3131;
-            color: #000;
-           
-            border: none;
-            border-radius: 10px;
-            padding: 10px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        } */
-
-        /* button {
-            margin-top:5px;
-            width: 95%;
-            background-color: #ccc;
-            color: #000;
-            
-            border: none;
-            border-radius: 10px;
-            padding: 10px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-        
-        button:hover {
-            background-color: #202124;
-            color: #fff;
-        } */
-        
         button {
         --color: red;
         font-family: inherit;
