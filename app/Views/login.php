@@ -239,8 +239,6 @@
                 Scanner un QR code
             </button>
         </div>
-        <script src="<?php echo base_url('js/main.js'); ?>"></script>
-        <script src="<?= base_url('js/qr.js');?>"></script>
         <div class="container" id="qrContainer" style="display:none;">
             <div class="section">
                 <div id="you-qr-result"></div>
@@ -286,11 +284,9 @@
                                 window.location.href = '/accueil';
                                 return;
                             } else {
-                                console.log("mandalo");
-                                const popup = document.querySelector("#popup");
-                                const p_text = document.querySelector('.p-content-text');
+                                console.log(data.status);
                                 p_text.innerText = data.status;
-                                popup.style.display = 'block';
+                                popup.style.display = 'flex';
                                 return;
                             }
                         });
@@ -305,6 +301,14 @@
                 // Lancement du scanner de QR code
                 htmlscanner.render(onScanSuccess);
                 });
+        close.onclick = () => {
+            popup.style.display = 'none';
+        }
+        window.onclick = e => {
+            if (e.target == popup) {
+                popup.style.display = 'none';
+            }
+        }
                 </script>
             <button id="formButton">
                 Formulaire normale
@@ -330,14 +334,8 @@
                 formContainer.style.display = 'none';
             });
         });
-        close.onclick = () => {
-            popup.style.display = 'none';
-        }
-        window.onclick = e => {
-            if (e.target == popup) {
-                popup.style.display = 'none';
-            }
-        }
     </script>
+    <script src="<?php echo base_url('js/main.js'); ?>"></script>
+    <script src="<?= base_url('js/qr.js');?>"></script>
 </body>
 </html>
