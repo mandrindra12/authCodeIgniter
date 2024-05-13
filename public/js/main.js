@@ -11,7 +11,7 @@ const login = async () => {
   const prenom = document.querySelector("input[name='prenom']").value;
   const nom = document.querySelector("input[name='nom']").value;
   const password = document.querySelector("input[name='password']").value;
-  if (username == "" || password == "") {
+  if (nom == "" || password == "" || prenom == "") {
     p_text.innerText = "Veuillez remplir tous les champs!";
     popup.style.display = "block";
     return;
