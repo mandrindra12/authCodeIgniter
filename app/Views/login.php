@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,14 +10,14 @@
             font-family: Poppins;
             src: url(/authentification/assets/fonts/Poppins-Regular.ttf);
         }
-        
+
         * {
             padding: 0;
             margin: 0;
             box-sizing: border-box;
             font-family: 'Poppins', sans-serif;
         }
-        
+
         body {
             background-color: #f1f1f1;
             background-size: cover;
@@ -27,9 +28,11 @@
             width: 100vw;
             height: 100vh;
         }
+
         .title {
-            color:red;
+            color: red;
         }
+
         .container {
             margin-bottom: 5px;
             display: flex;
@@ -42,7 +45,7 @@
             padding: 40px;
             position: relative;
         }
-      
+
         .form-fields input {
             width: 95%;
             border-radius: 10px;
@@ -51,70 +54,71 @@
             margin-bottom: 15px;
             transition: border-color 0.3s ease;
         }
-        
+
         .link {
-            color:#ccc;
+            color: #ccc;
         }
-        .link:hover{
-            color:red;
+
+        .link:hover {
+            color: red;
         }
-        
+
         .form-fields input:focus {
             outline: none;
             border-color: red;
         }
-        
+
         .divButton {
             display: flex;
             align-items: center;
         }
-        
+
         button {
-        --color: red;
-        font-family: inherit;
-        display: inline-block;
-        width: 90%;
-        height: 2.6em;
-        line-height: 2.5em;
-        overflow: hidden;
-        margin: 20px;
-        font-size: 17px;
-        z-index: 1;
-        color: var(--color);
-        border: 2px solid var(--color);
-        border-radius: 6px;
-        position: relative;
+            --color: red;
+            font-family: inherit;
+            display: inline-block;
+            width: 90%;
+            height: 2.6em;
+            line-height: 2.5em;
+            overflow: hidden;
+            margin: 20px;
+            font-size: 17px;
+            z-index: 1;
+            color: var(--color);
+            border: 2px solid var(--color);
+            border-radius: 6px;
+            position: relative;
         }
 
         button::before {
-        position: absolute;
-        content: "";
-        background: var(--color);
-        width: 600px;
-        height: 800px;
-        z-index: -1;
-        border-radius: 50%;
+            position: absolute;
+            content: "";
+            background: var(--color);
+            width: 600px;
+            height: 800px;
+            z-index: -1;
+            border-radius: 50%;
         }
 
         button:hover {
-        color: white;
+            color: white;
         }
 
         button:before {
-        top: 100%;
-        left: 100%;
-        transition: .3s all;
+            top: 100%;
+            left: 100%;
+            transition: .3s all;
         }
 
         button:hover::before {
-        top: -110px;
-        left: -110px;
+            top: -110px;
+            left: -110px;
         }
 
         .form-fields button:hover {
             color: #fff;
         }
-        
+
         .link {
             position: relative;
             bottom: 0;
@@ -123,21 +127,22 @@
             flex-direction: column;
             align-items: center;
         }
-        
+
         .link p {
             margin-bottom: 10px;
             color: #555;
         }
-        
+
         .link a {
             color: #ccc;
             text-decoration: none;
             transition: color 0.3s ease;
         }
-        
+
         .link a:hover {
             color: #de0000;
         }
+
         .popup {
             display: none;
             position: fixed;
@@ -149,33 +154,74 @@
             overflow: auto;
             background-color: rgba(0, 0, 0, 0.4);
         }
-        
-        
- 
-        
+
+        .p-content {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            margin: 15% auto;
+            padding: 20px;
+            width: 30%;
+            position: relative;
+            animation: fadeIn 0.5s;
+        }
+
+        .p-content p {
+            color: #dd1111;
+            font-family: 'Poppins', sans-serif;
+            font-size: 16px;
+            text-align: center;
+        }
+
+        .p-close {
+            color: #aaa;
+            float: right;
+            font-size: 12px;
+            font-weight: bold;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            transition: fadeIn .3s ease;
+        }
+
+        label,
+        h2,
+        h3 {
+            color: #ccc;
+        }
+
+        .p-close:hover,
+        .p-close:focus {
+            color: #202124;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+
         @keyframes fadeIn {
             from {
                 opacity: 0;
             }
+
             to {
                 opacity: 1;
             }
         }
-        
-        
+
+
         @media screen and (max-width:900px) {
-            .container{
+            .container {
                 width: 100vw;
                 display: flex;
                 flex-direction: column;
                 align-items: center;
                 justify-content: space-evenly;
             }
-        
+
         }
-        
+
         @media screen and (max-width:768px) {
-            .container{
+            .container {
                 width: 100vw;
                 height: 100vh;
                 display: flex;
@@ -183,7 +229,8 @@
                 align-items: center;
                 justify-content: space-evenly;
             }
-            .left-panel{
+
+            .left-panel {
                 width: 100vw;
                 height: 40vh;
                 display: flex;
@@ -192,43 +239,43 @@
                 background-color: #ffffff84;
             }
         }
-        
+
         .main {
             display: flex;
             flex-direction: column;
         }
-
     </style>
 </head>
+
 <body>
     <div class="main">
         <div class="container" id="formContainer" style="display:flex;">
-                        <h2 class="title">Connexion</h2>
-                        <form class="form-fields">
-                            <div class="fields">
-                                <label for="username">Nom</label>
-                                <input type="text" name="nom" id="username" >
-                            </div>
-                            <div class="fields">
-                                <label for="username">Prénom</label>
-                                <input type="text" name="prenom" id="" >
-                            </div>
-                            <div class="fields">
-                                <label for="password">Mot de passe</label>
-                                <input type="password" name="password" id="password" placeholder='Mot de passe...'>
-                            </div>
-                            <div class="divButton">
-                                <button type="submit" id="loginButton">Connexion</button>
-                            </div>
-                        </form>
-                    <div class="link">
-                        <p>Connectez-vous facilement avec votre compte MIT</p>
-                        <div class="container-link-signup">
-                            <a href="/index.php/inscription" >
-                                <p class="link">Créer un compte</p>
-                            </a>
-                        </div>
-                    </div>
+            <h2 class="title">Connexion</h2>
+            <form class="form-fields">
+                <div class="fields">
+                    <label for="username">Nom</label>
+                    <input type="text" name="nom" id="username">
+                </div>
+                <div class="fields">
+                    <label for="username">Prénom</label>
+                    <input type="text" name="prenom" id="">
+                </div>
+                <div class="fields">
+                    <label for="password">Mot de passe</label>
+                    <input type="password" name="password" id="password" placeholder='Mot de passe...'>
+                </div>
+                <div class="divButton">
+                    <button type="submit" id="loginButton">Connexion</button>
+                </div>
+            </form>
+            <div class="link">
+                <p>Connectez-vous facilement avec votre compte MIT</p>
+                <div class="container-link-signup">
+                    <a href="/index.php/inscription">
+                        <p class="link">Créer un compte</p>
+                    </a>
+                </div>
+            </div>
             <div id="popup" class="popup">
                 <div class="p-content">
                     <span class="p-close"><i class="fas fa-times"></i></span>
@@ -247,76 +294,79 @@
                     <div id="my-qr-reader"></div>
                 </div>
                 <script>
-                // Vérifier si le DOM est prêt
-                function domReady(fn) {
-                if (document.readyState === "complete" || document.readyState === "interactive") {
-                    setTimeout(fn, 1);
-                } else {
-                    document.addEventListener("DOMContentLoaded", fn);
-                }
-                }
-
-                // Attendre le chargement complet du DOM avant d'exécuter le script
-                domReady(function () {
-                var myqr = document.getElementById('you-qr-result');
-                var lastResult, countResults = 0;
-
-                // Fonction appelée lorsqu'un QR code est détecté avec succès
-                function onScanSuccess(decodeText, decodeResult) {
-                    if (decodeText !== lastResult) {
-                        ++countResults; 
-                        lastResult = decodeText;
-
-                        // Affichage du résultat renvoyé par le serveur
-                        myqr.innerHTML = `Vous avez scanné ${countResults} QR code(s) : ${decodeText}`;
-
-                        // Redirection vers une autre page après 3 secondes avec les données du QR code dans l'URL
-                        // setTimeout(() => {
-                        // window.location.href = '/qrconnect?' + decodeText;
-                        url = '/qrconnect?' + decodeText;
-                        let statusCode = 800;
-                        fetch(url).then(resp => {
-                            statusCode = resp.status;
-                            return resp.json();
-                        }).then(
-                            data => {
-                                if(statusCode < 400) {
-                                window.location.href = '/accueil';
-                                return;
-                            } else {
-                                console.log(data.status);
-                                p_text.innerText = data.status;
-                                popup.style.display = 'flex';
-                                return;
-                            }
-                        });
-                        // }, 3000); // Rediriger après 3 secondes (3000 millisecondes)
+                    // Vérifier si le DOM est prêt
+                    function domReady(fn) {
+                        if (document.readyState === "complete" || document.readyState === "interactive") {
+                            setTimeout(fn, 1);
+                        } else {
+                            document.addEventListener("DOMContentLoaded", fn);
+                        }
                     }
-                }
 
-                // Initialisation du scanner de QR code
-                var htmlscanner = new Html5QrcodeScanner(
-                    "my-qr-reader", { fps: 10, qrbox: 250 }
-                );
-                // Lancement du scanner de QR code
-                htmlscanner.render(onScanSuccess);
-                });
-        close.onclick = () => {
-            popup.style.display = 'none';
-        }
-        window.onclick = e => {
-            if (e.target == popup) {
-                popup.style.display = 'none';
-            }
-        }
+                    // Attendre le chargement complet du DOM avant d'exécuter le script
+                    domReady(function() {
+                        var myqr = document.getElementById('you-qr-result');
+                        var lastResult, countResults = 0;
+
+                        // Fonction appelée lorsqu'un QR code est détecté avec succès
+                        function onScanSuccess(decodeText, decodeResult) {
+                            if (decodeText !== lastResult) {
+                                ++countResults;
+                                lastResult = decodeText;
+
+                                // Affichage du résultat renvoyé par le serveur
+                                myqr.innerHTML = `Vous avez scanné ${countResults} QR code(s) : ${decodeText}`;
+
+                                // Redirection vers une autre page après 3 secondes avec les données du QR code dans l'URL
+                                // setTimeout(() => {
+                                // window.location.href = '/qrconnect?' + decodeText;
+                                url = '/qrconnect?' + decodeText;
+                                let statusCode = 800;
+                                fetch(url).then(resp => {
+                                    statusCode = resp.status;
+                                    return resp.json();
+                                }).then(
+                                    data => {
+                                        if (statusCode < 400) {
+                                            window.location.href = '/accueil';
+                                            return;
+                                        } else {
+                                            console.log(data.status);
+                                            p_text.innerText = data.status;
+                                            popup.style.display = 'flex';
+                                            return;
+                                        }
+                                    });
+                                // }, 3000); // Rediriger après 3 secondes (3000 millisecondes)
+                            }
+                        }
+
+                        // Initialisation du scanner de QR code
+                        var htmlscanner = new Html5QrcodeScanner(
+                            "my-qr-reader", {
+                                fps: 10,
+                                qrbox: 250
+                            }
+                        );
+                        // Lancement du scanner de QR code
+                        htmlscanner.render(onScanSuccess);
+                    });
+                    close.onclick = () => {
+                        popup.style.display = 'none';
+                    }
+                    window.onclick = e => {
+                        if (e.target == popup) {
+                            popup.style.display = 'none';
+                        }
+                    }
                 </script>
-            <button id="formButton">
-                Formulaire normale
-            </button>
+                <button id="formButton">
+                    Formulaire normale
+                </button>
             </div>
         </div>
     </div>
-    
+
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             var qrButton = document.getElementById('qrButton');
@@ -336,6 +386,7 @@
         });
     </script>
     <script src="<?php echo base_url('js/main.js'); ?>"></script>
-    <script src="<?= base_url('js/qr.js');?>"></script>
+    <script src="<?= base_url('js/qr.js'); ?>"></script>
 </body>
+
 </html>
