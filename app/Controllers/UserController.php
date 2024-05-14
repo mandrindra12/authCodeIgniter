@@ -75,7 +75,7 @@ class UserController extends BaseController
         ->setStatusCode(404)
         ->setJSON(['status' => 'user not found']);
     }
-    return $this->response->setJSON(['statut' => $users]);
+    // return $this->response->setJSON(['statut' => $users]);
     foreach ($users as $user) {
       if ($this->usermodel->verifyPassword($user['nom'], $user['prenoms'], $mdp)) {
         // if ($user['est_actif'] == 1) {
