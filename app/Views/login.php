@@ -8,7 +8,7 @@
     <style>
         @font-face {
             font-family: Poppins;
-            src: url(/authentification/assets/fonts/Poppins-Regular.ttf);
+            src: url(/assets/fonts/Poppins-Regular.ttf);
         }
 
         * {
