@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <title>MIT | Sign Up</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <style>
+
+<head>
+    <title>MIT | Sign Up</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
         @font-face {
             font-family: Poppins;
-            src: url(/authentification/assets/fonts/Poppins-Regular.ttf);
+            src: url(/assets/fonts/Poppins-Regular.ttf);
         }
 
         * {
@@ -107,39 +108,105 @@
         .link a:hover {
             color: #de1111;
         }
-        </style>
-    </head>
-    <body>
-        <div class="container">
-            <div class="signup">
-                <div class="clip-out"></div>
-                <h3>Cr&eacute;ation de compte</h3>
-                <form id="signup">
-                    <div class="input">
-                        <input type="text" name="nom" placeholder='Nom...' required autocomplete='off'>
-                        <input type="text" name="prenom" placeholder='Pr&eacute;nom...' required autocomplete='off'>
-                        <input type="password" name="password" placeholder='Mot de passe...' required autocomplete='off'>
-                        <div style="display: flex;flex-direction:column;">
-                            <input type="password" name="passwd" placeholder='Confirmation mot de passe...' required autocomplete='off'>
-                            <p class="match-content" style="display: none;color:red">Ne correspondent pas</p>
-                        </div>
+        .popup {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        .p-content {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            margin: 15% auto;
+            padding: 20px;
+            width: 30%;
+            position: relative;
+            animation: fadeIn 0.5s;
+        }
+
+        .p-content p {
+            color: #dd1111;
+            font-family: 'Poppins', sans-serif;
+            font-size: 16px;
+            text-align: center;
+        }
+
+        .p-close {
+            color: #aaa;
+            float: right;
+            font-size: 12px;
+            font-weight: bold;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            transition: fadeIn .3s ease;
+        }
+
+        label,
+        h2,
+        h3 {
+            color: #ccc;
+        }
+
+        .p-close:hover,
+        .p-close:focus {
+            color: #202124;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="signup">
+            <div class="clip-out"></div>
+            <h3>Cr&eacute;ation de compte</h3>
+            <form id="signup">
+                <div class="input">
+                    <input type="text" name="nom" placeholder='Nom...' required autocomplete='off'>
+                    <input type="text" name="prenom" placeholder='Pr&eacute;nom...' required autocomplete='off'>
+                    <input type="password" name="password" placeholder='Mot de passe...' required autocomplete='off'>
+                    <div style="display: flex;flex-direction:column;">
+                        <input type="password" name="passwd" placeholder='Confirmation mot de passe...' required autocomplete='off'>
+                        <p class="match-content" style="display: none;color:red">Ne correspondent pas</p>
                     </div>
-                    <div class="button">
-                        <button type="submit" id="signupButton">Cr&eacute;er</button>
-                    </div>
-                </form>
-            </div>
-            <div class="link">
-                <p>Connectez-vous avec votre compte MIT</p>
-                <a href="/connexion">Connexion</a>
-            </div>
-            <div id="popup" class="popup">
-                <div class="p-content">
-                    <span class="p-close"><i class="fas fa-times"></i></span>
-                    <p class="p-content-text"></p>
                 </div>
+                <div class="button">
+                    <button type="submit" id="signupButton">Cr&eacute;er</button>
+                </div>
+            </form>
+        </div>
+        <div class="link">
+            <p>Connectez-vous avec votre compte MIT</p>
+            <a href="/connexion">Connexion</a>
+        </div>
+        <div id="popup" class="popup">
+            <div class="p-content">
+                <span class="p-close"><i class="fas fa-times"></i></span>
+                <p class="p-content-text"></p>
             </div>
         </div>
+    </div>
     <script src="<?php echo base_url('js/signup.js'); ?>"></script>
-    </body>
+</body>
+
 </html>
