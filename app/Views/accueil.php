@@ -131,6 +131,36 @@
       border-radius:10px;
       box-shadow: 0px 0px 20px #ccc;
     }
+
+    .application-img-5{
+      background: url(/assets/img/Qrcode.png);
+      background-size: cover;
+      background-position: center;
+      width:100%;
+      height:80%;
+      border-radius:10px;
+      box-shadow: 0px 0px 20px #ccc;
+    }
+
+    .application-img-6{
+      background: url(/assets/img/DHCP.png);
+      background-size: cover;
+      background-position: center;
+      width:100%;
+      height:80%;
+      border-radius:10px;
+      box-shadow: 0px 0px 20px #ccc;
+    }
+
+    .application-img-7{
+      background: url(/assets/img/Proxy.png);
+      background-size: cover;
+      background-position: center;
+      width:100%;
+      height:80%;
+      border-radius:10px;
+      box-shadow: 0px 0px 20px #ccc;
+    }
     
     .application-title {
       padding: 5px;
@@ -219,7 +249,7 @@
     </div> 
     <div class="application-main-container">
       <a href="/" class="application-link">
-          <div class="application-img"></div>
+          <div class="application-img-5"></div>
           <div class="application-title">QR Code</div>
           <div class="application-acces">Acces : Teacher</div> 
       </a>
@@ -227,7 +257,7 @@
 
     <div class="application-main-container">
       <a href="/" class="application-link">
-          <div class="application-img"></div>
+          <div class="application-img-6"></div>
           <div class="application-title">DHCP</div>
           <div class="application-acces">Acces : Teacher</div> 
       </a>
@@ -235,17 +265,17 @@
 
     <div class="application-main-container">
       <a href="/" class="application-link">
-          <div class="application-img"></div>
+          <div class="application-img-7"></div>
           <div class="application-title">PROXY</div>
           <div class="application-acces">Acces : Teacher</div> 
       </a>
     </div> 
     <?php 
-        // if($data['statut'] == 1){
-        //   echo "MR" . $data['nom'];
-        // } else {
-        //   echo "Mpianatra" . $data['prenom'];
-        // }
+         if($data['statut'] == 1){
+           echo "MR" . $data['nom'];
+         } else {
+           echo "Mpianatra" . $data['prenom'];
+        }
     ?>
     <!-- Répétez le bloc .application-main-container pour chaque application -->
 
