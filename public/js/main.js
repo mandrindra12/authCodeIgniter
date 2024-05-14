@@ -17,6 +17,7 @@ const login = async () => {
     return;
   }
   HTTP_STATUS_CODE = 0;
+  document.querySelector('.loader-container').style.display = 'block';
   fetch("/connexion", {
     method: "POST",
     headers: {
@@ -29,6 +30,7 @@ const login = async () => {
       return resp.json();
     })
     .then((data) => {
+      document.querySelector('.loader-container').style.display = 'none';
       if (HTTP_STATUS_CODE == 200) {
         // ito no ovaina rehefa tiana anao redirection makany am page d'accueil
         window.location.href = "/accueil";

@@ -39,6 +39,7 @@ verify_pass.addEventListener('input', () => {
 });
 
 const signup = async(formData) => {
+    document.querySelector('.loader-container').style.display = 'block';
     fetch('/inscription', {
         method: 'POST',
         headers: {
@@ -52,6 +53,7 @@ const signup = async(formData) => {
     .then(
         data => {
             // console.log(data);
+            document.querySelector('.loader-container').style.display = 'none';
             if(data.status_code === 201) {
                 p_text.innerText = data.status+' Rember this login: '+data.login;
                 popup.style.display = 'block';

@@ -245,10 +245,122 @@
             display: flex;
             flex-direction: column;
         }
+        .loader-container {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+        /* .loader {
+            position: fixed;
+            z-index: 2;
+            left: 50%;
+            top: 35%;
+            width: 45px;
+            height: 50px;
+            background: linear-gradient(#0000 calc(1*100%/6),#f00 0 calc(3*100%/6),#0000 0),
+                      linear-gradient(#0000 calc(2*100%/6),#f00 0 calc(4*100%/6),#0000 0),
+                      linear-gradient(#0000 calc(3*100%/6),#f00 0 calc(5*100%/6),#0000 0);
+            background-size: 10px 400%;
+            background-repeat: no-repeat;
+            animation: matrix 1s infinite linear;
+        }
+
+        @keyframes matrix {
+          0% {
+            background-position: 0% 100%, 50% 100%, 100% 100%
+          }
+      
+          100% {
+            background-position: 0% 0%, 50% 0%, 100% 0%
+          }
+        } */
+        .loader {
+         position: relative;
+         width: 2.5em;
+         height: 2.5em;
+         transform: rotate(165deg);
+        }
+        
+        .loader:before, .loader:after {
+         content: "";
+         position: absolute;
+         top: 50%;
+         left: 50%;
+         display: block;
+         width: 0.5em;
+         height: 0.5em;
+         border-radius: 0.25em;
+         transform: translate(-50%, -50%);
+        }
+        
+        .loader:before {
+         animation: before8 2s infinite;
+        }
+        
+        .loader:after {
+         animation: after6 2s infinite;
+        }
+        
+        @keyframes before8 {
+         0% {
+          width: 0.5em;
+          box-shadow: 1em -0.5em rgba(225, 20, 98, 0.75), -1em 0.5em rgba(111, 202, 220, 0.75);
+         }
+     
+         35% {
+          width: 2.5em;
+          box-shadow: 0 -0.5em rgba(225, 20, 98, 0.75), 0 0.5em rgba(111, 202, 220, 0.75);
+         }
+     
+         70% {
+          width: 0.5em;
+          box-shadow: -1em -0.5em rgba(225, 20, 98, 0.75), 1em 0.5em rgba(111, 202, 220, 0.75);
+         }
+     
+         100% {
+          box-shadow: 1em -0.5em rgba(225, 20, 98, 0.75), -1em 0.5em rgba(111, 202, 220, 0.75);
+         }
+        }
+        
+        @keyframes after6 {
+         0% {
+          height: 0.5em;
+          box-shadow: 0.5em 1em rgba(61, 184, 143, 0.75), -0.5em -1em rgba(233, 169, 32, 0.75);
+         }
+     
+         35% {
+          height: 2.5em;
+          box-shadow: 0.5em 0 rgba(61, 184, 143, 0.75), -0.5em 0 rgba(233, 169, 32, 0.75);
+         }
+     
+         70% {
+          height: 0.5em;
+          box-shadow: 0.5em -1em rgba(61, 184, 143, 0.75), -0.5em 1em rgba(233, 169, 32, 0.75);
+         }
+     
+         100% {
+          box-shadow: 0.5em 1em rgba(61, 184, 143, 0.75), -0.5em -1em rgba(233, 169, 32, 0.75);
+         }
+        }
+        
+        .loader {
+         position: absolute;
+         top: calc(50% - 1.25em);
+         left: calc(50% - 1.25em);
+        }
     </style>
 </head>
 
 <body>
+    <div class="loader-container">
+        <div class="loader"></div>
+    </div>
     <div class="main">
         <div class="container" id="formContainer" style="display:flex;">
             <h2 class="title">Connexion</h2>
