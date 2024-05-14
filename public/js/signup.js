@@ -12,9 +12,11 @@ s.addEventListener('click' , e => {
     if(formData.get('nom') == '' || formData.get('prenom') == '' || formData.get('password') == ''){
         p_text.innerText = "Veuillez remplir tous les champs!";
         popup.style.display = 'block';
+        return;
     }
     if(current_pass.value != verify_pass.value) {
         m.style.display = 'block';
+        return;
     }
     signup(formData);
 });
@@ -22,6 +24,7 @@ s.addEventListener('click' , e => {
 current_pass.addEventListener('input', () => {
     if(current_pass.value != verify_pass.value) {
         m.style.display = 'block';
+        return;
     } else {
         m.style.display = 'none';
     }
@@ -29,6 +32,7 @@ current_pass.addEventListener('input', () => {
 verify_pass.addEventListener('input', () => {
     if(current_pass.value != verify_pass.value) {
         m.style.display = 'block';
+        return;
     } else {
         m.style.display = 'none';
     }
