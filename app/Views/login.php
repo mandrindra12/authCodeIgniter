@@ -278,7 +278,7 @@
             </div>
             <div id="popup" class="popup">
                 <div class="p-content">
-                    <span class="p-close"><i class="fas fa-times"></i></span>
+                    <span class="p-close"><i class="fa fa-times"></i></span>
                     <p class="p-content-text"></p>
                 </div>
             </div>
