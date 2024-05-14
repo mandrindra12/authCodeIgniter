@@ -67,8 +67,10 @@
 
     /* CONTAINER  */
     .container {
+      display:flex;
+      flex-wrap: wrap;
+      justify-content: center;
       width:100%;
-      height:100%;
       padding:30px;
     }
 
@@ -77,6 +79,7 @@
       width:300px;
       height:350px;
       padding:20px;
+      margin:10px;
       background-color:#fff;
       border-radius:10px;
       box-shadow: 0px 0px 20px #ccc;
@@ -104,14 +107,31 @@
       text-decoration:none;
       color:#000;
     }
+
+    /* Media queries pour les écrans plus petits */
+    @media only screen and (max-width: 768px) {
+      .container {
+        padding: 10px;
+      }
+      .application-main-container {
+        width: calc(50% - 20px);
+      }
+    }
+
+    /* Media queries pour les écrans encore plus petits, comme les téléphones */
+    @media only screen and (max-width: 480px) {
+      .container {
+        padding: 5px;
+      }
+      .application-main-container {
+        width: calc(100% - 10px);
+      }
+    }
   </style>
   <title>Accueil test</title>
 </head>
 <body>
-  
-</body>
-</html>
-<html>
+  <!-- HEADER -->
   <header>
     <nav class="header-container">
       <div class="header-title">
@@ -126,30 +146,55 @@
       </div>
     </nav>
   </header>
-  <body>
-    <!-- CONTAINER CODE -->
-    <div class="container">
-      <div class="application-main-container">
-        <a href="/" class="application-link">
-            <div class="application-img">
-            </div>
-            <div class="application-title">
-              Title
-            </div>
-            <div class="application-acces">
-              Acces : Teacher
-            </div> 
-        </a>
-      </div> 
-      <?php 
+  <!-- CONTAINER -->
+  <div class="container">
+    <!-- APPLICATIONS -->
+    <div class="application-main-container">
+      <a href="/" class="application-link">
+          <div class="application-img"></div>
+          <div class="application-title">Title</div>
+          <div class="application-acces">Acces : Teacher</div> 
+      </a>
+    </div> 
+    <div class="application-main-container">
+      <a href="/" class="application-link">
+          <div class="application-img"></div>
+          <div class="application-title">Title</div>
+          <div class="application-acces">Acces : Teacher</div> 
+      </a>
+    </div> 
+    <div class="application-main-container">
+      <a href="/" class="application-link">
+          <div class="application-img"></div>
+          <div class="application-title">Title</div>
+          <div class="application-acces">Acces : Teacher</div> 
+      </a>
+    </div> 
+    <div class="application-main-container">
+      <a href="/" class="application-link">
+          <div class="application-img"></div>
+          <div class="application-title">Title</div>
+          <div class="application-acces">Acces : Teacher</div> 
+      </a>
+    </div> 
+    <div class="application-main-container">
+      <a href="/" class="application-link">
+          <div class="application-img"></div>
+          <div class="application-title">Title</div>
+          <div class="application-acces">Acces : Teacher</div> 
+      </a>
+    </div> 
+    <?php 
         if($data['statut'] == 1){
           echo "MR" . $data['nom'];
         } else {
           echo "Mpianatra" . $data['prenom'];
         }
-      ?>
-        
-    </div>
-  <body>
-    <footter></footer>
+    ?>
+    <!-- Répétez le bloc .application-main-container pour chaque application -->
+
+  </div>
+</body>
 </html>
+
+
