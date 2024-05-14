@@ -5,6 +5,7 @@
     <title>MIT | Sign Up</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/assets/font-awesome/font-awesome.min.css">
     <style>
         @font-face {
             font-family: Poppins;
