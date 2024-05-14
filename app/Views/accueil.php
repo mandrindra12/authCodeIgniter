@@ -91,6 +91,46 @@
       height:80%;
       border-radius:10px;
     }
+
+    .application-img-1{
+      background: url(/assets/img/Log2.png);
+      background-size: cover;
+      background-position: center;
+      width:100%;
+      height:80%;
+      border-radius:10px;
+      box-shadow: 0px 0px 20px #ccc;
+    }
+
+    .application-img-2{
+      background: url(/assets/img/UE.png);
+      background-size: cover;
+      background-position: center;
+      width:100%;
+      height:80%;
+      border-radius:10px;
+      box-shadow: 0px 0px 20px #ccc;
+    }
+
+    .application-img-3{
+      background: url(/assets/img/machine.png);
+      background-size: cover;
+      background-position: center;
+      width:100%;
+      height:80%;
+      border-radius:10px;
+      box-shadow: 0px 0px 20px #ccc;
+    }
+
+    .application-img-4{
+      background: url(/assets/img/gestionEtudiant.png);
+      background-size: cover;
+      background-position: center;
+      width:100%;
+      height:80%;
+      border-radius:10px;
+      box-shadow: 0px 0px 20px #ccc;
+    }
     
     .application-title {
       padding: 5px;
@@ -151,45 +191,61 @@
     <!-- APPLICATIONS -->
     <div class="application-main-container">
       <a href="/" class="application-link">
-          <div class="application-img"></div>
-          <div class="application-title">Title</div>
+          <div class="application-img-1"></div>
+          <div class="application-title">Log</div>
+          <div class="application-acces">Acces : Teacher</div> 
+      </a>
+    </div> 
+    <div class="application-main-container">
+      <a href="/" class="application-link">
+          <div class="application-img-2"></div>
+          <div class="application-title">Gestion UE</div>
+          <div class="application-acces">Acces : Teacher</div> 
+      </a>
+    </div> 
+    <div class="application-main-container">
+      <a href="/" class="application-link">
+          <div class="application-img-3"></div>
+          <div class="application-title">Gestion machine</div>
+          <div class="application-acces">Acces : Teacher</div> 
+      </a>
+    </div> 
+    <div class="application-main-container">
+      <a href="/" class="application-link">
+          <div class="application-img-4"></div>
+          <div class="application-title">Gestion Étudiant</div>
           <div class="application-acces">Acces : Teacher</div> 
       </a>
     </div> 
     <div class="application-main-container">
       <a href="/" class="application-link">
           <div class="application-img"></div>
-          <div class="application-title">Title</div>
+          <div class="application-title">QR Code</div>
           <div class="application-acces">Acces : Teacher</div> 
       </a>
     </div> 
+
     <div class="application-main-container">
       <a href="/" class="application-link">
           <div class="application-img"></div>
-          <div class="application-title">Title</div>
+          <div class="application-title">DHCP</div>
           <div class="application-acces">Acces : Teacher</div> 
       </a>
     </div> 
+
     <div class="application-main-container">
       <a href="/" class="application-link">
           <div class="application-img"></div>
-          <div class="application-title">Title</div>
-          <div class="application-acces">Acces : Teacher</div> 
-      </a>
-    </div> 
-    <div class="application-main-container">
-      <a href="/" class="application-link">
-          <div class="application-img"></div>
-          <div class="application-title">Title</div>
+          <div class="application-title">PROXY</div>
           <div class="application-acces">Acces : Teacher</div> 
       </a>
     </div> 
     <?php 
-        if($data['statut'] == 1){
-          echo "MR" . $data['nom'];
-        } else {
-          echo "Mpianatra" . $data['prenom'];
-        }
+        // if($data['statut'] == 1){
+        //   echo "MR" . $data['nom'];
+        // } else {
+        //   echo "Mpianatra" . $data['prenom'];
+        // }
     ?>
     <!-- Répétez le bloc .application-main-container pour chaque application -->
 
