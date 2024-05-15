@@ -8,16 +8,18 @@ b.addEventListener("click", (e) => {
 });
 
 const login = async () => {
-  const prenom = document.querySelector("input[name='prenom']").value;
-  const nom = document.querySelector("input[name='nom']").value;
-  const password = document.querySelector("input[name='password']").value;
-  if (nom == "" || password == "" || prenom == "") {
+  const prenom = document.querySelector("input[name='prenom']").value.trim();
+  const nom = document.querySelector("input[name='nom']").value.trim();
+  const password = document
+    .querySelector("input[name='password']")
+    .value.trim();
+  if (!nom || !password || !prenom) {
     p_text.innerText = "Veuillez remplir tous les champs!";
     popup.style.display = "block";
     return;
   }
   HTTP_STATUS_CODE = 0;
-  document.querySelector('.loader-container').style.display = 'block';
+  document.querySelector(".loader-container").style.display = "block";
   fetch("/connexion", {
     method: "POST",
     headers: {
@@ -30,7 +32,7 @@ const login = async () => {
       return resp.json();
     })
     .then((data) => {
-      document.querySelector('.loader-container').style.display = 'none';
+      document.querySelector(".loader-container").style.display = "none";
       if (HTTP_STATUS_CODE == 200) {
         // ito no ovaina rehefa tiana anao redirection makany am page d'accueil
         window.location.href = "/accueil";
