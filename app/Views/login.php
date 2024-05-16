@@ -245,6 +245,7 @@
             display: flex;
             flex-direction: column;
         }
+
         .loader-container {
             display: none;
             position: fixed;
@@ -256,6 +257,7 @@
             overflow: auto;
             background-color: rgba(0, 0, 0, 0.4);
         }
+
         /* .loader {
             position: fixed;
             z-index: 2;
@@ -281,78 +283,79 @@
           }
         } */
         .loader {
-         position: relative;
-         width: 2.5em;
-         height: 2.5em;
-         transform: rotate(165deg);
+            position: relative;
+            width: 2.5em;
+            height: 2.5em;
+            transform: rotate(165deg);
         }
-        
-        .loader:before, .loader:after {
-         content: "";
-         position: absolute;
-         top: 50%;
-         left: 50%;
-         display: block;
-         width: 0.5em;
-         height: 0.5em;
-         border-radius: 0.25em;
-         transform: translate(-50%, -50%);
-        }
-        
-        .loader:before {
-         animation: before8 2s infinite;
-        }
-        
+
+        .loader:before,
         .loader:after {
-         animation: after6 2s infinite;
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            display: block;
+            width: 0.5em;
+            height: 0.5em;
+            border-radius: 0.25em;
+            transform: translate(-50%, -50%);
         }
-        
+
+        .loader:before {
+            animation: before8 2s infinite;
+        }
+
+        .loader:after {
+            animation: after6 2s infinite;
+        }
+
         @keyframes before8 {
-         0% {
-          width: 0.5em;
-          box-shadow: 1em -0.5em rgba(225, 20, 98, 0.75), -1em 0.5em rgba(111, 202, 220, 0.75);
-         }
-     
-         35% {
-          width: 2.5em;
-          box-shadow: 0 -0.5em rgba(225, 20, 98, 0.75), 0 0.5em rgba(111, 202, 220, 0.75);
-         }
-     
-         70% {
-          width: 0.5em;
-          box-shadow: -1em -0.5em rgba(225, 20, 98, 0.75), 1em 0.5em rgba(111, 202, 220, 0.75);
-         }
-     
-         100% {
-          box-shadow: 1em -0.5em rgba(225, 20, 98, 0.75), -1em 0.5em rgba(111, 202, 220, 0.75);
-         }
+            0% {
+                width: 0.5em;
+                box-shadow: 1em -0.5em rgba(225, 20, 98, 0.75), -1em 0.5em rgba(111, 202, 220, 0.75);
+            }
+
+            35% {
+                width: 2.5em;
+                box-shadow: 0 -0.5em rgba(225, 20, 98, 0.75), 0 0.5em rgba(111, 202, 220, 0.75);
+            }
+
+            70% {
+                width: 0.5em;
+                box-shadow: -1em -0.5em rgba(225, 20, 98, 0.75), 1em 0.5em rgba(111, 202, 220, 0.75);
+            }
+
+            100% {
+                box-shadow: 1em -0.5em rgba(225, 20, 98, 0.75), -1em 0.5em rgba(111, 202, 220, 0.75);
+            }
         }
-        
+
         @keyframes after6 {
-         0% {
-          height: 0.5em;
-          box-shadow: 0.5em 1em rgba(61, 184, 143, 0.75), -0.5em -1em rgba(233, 169, 32, 0.75);
-         }
-     
-         35% {
-          height: 2.5em;
-          box-shadow: 0.5em 0 rgba(61, 184, 143, 0.75), -0.5em 0 rgba(233, 169, 32, 0.75);
-         }
-     
-         70% {
-          height: 0.5em;
-          box-shadow: 0.5em -1em rgba(61, 184, 143, 0.75), -0.5em 1em rgba(233, 169, 32, 0.75);
-         }
-     
-         100% {
-          box-shadow: 0.5em 1em rgba(61, 184, 143, 0.75), -0.5em -1em rgba(233, 169, 32, 0.75);
-         }
+            0% {
+                height: 0.5em;
+                box-shadow: 0.5em 1em rgba(61, 184, 143, 0.75), -0.5em -1em rgba(233, 169, 32, 0.75);
+            }
+
+            35% {
+                height: 2.5em;
+                box-shadow: 0.5em 0 rgba(61, 184, 143, 0.75), -0.5em 0 rgba(233, 169, 32, 0.75);
+            }
+
+            70% {
+                height: 0.5em;
+                box-shadow: 0.5em -1em rgba(61, 184, 143, 0.75), -0.5em 1em rgba(233, 169, 32, 0.75);
+            }
+
+            100% {
+                box-shadow: 0.5em 1em rgba(61, 184, 143, 0.75), -0.5em -1em rgba(233, 169, 32, 0.75);
+            }
         }
-        
+
         .loader {
-         position: absolute;
-         top: calc(50% - 1.25em);
-         left: calc(50% - 1.25em);
+            position: absolute;
+            top: calc(50% - 1.25em);
+            left: calc(50% - 1.25em);
         }
     </style>
 </head>
@@ -367,15 +370,15 @@
             <form class="form-fields">
                 <div class="fields">
                     <label for="username">Nom</label>
-                    <input type="text" name="nom" id="username">
+                    <input type="text" name="nom" id="username" autocomplete="off">
                 </div>
                 <div class="fields">
                     <label for="username">Prénom</label>
-                    <input type="text" name="prenom" id="">
+                    <input type="text" name="prenom" id="" autocomplete="off">
                 </div>
                 <div class="fields">
                     <label for="password">Mot de passe</label>
-                    <input type="password" name="password" id="password" placeholder='Mot de passe...'>
+                    <input type="password" name="password" id="password" placeholder='Mot de passe...' autocomplete="off">
                 </div>
                 <div class="divButton">
                     <button type="submit" id="loginButton">Connexion</button>
@@ -384,7 +387,7 @@
             <div class="link">
                 <p>Connectez-vous facilement avec votre compte MIT</p>
                 <div class="container-link-signup">
-                    <a href="/index.php/inscription">
+                    <a href="/inscription">
                         <p class="link">Créer un compte</p>
                     </a>
                 </div>
@@ -435,11 +438,13 @@
                                 // window.location.href = '/qrconnect?' + decodeText;
                                 url = '/qrconnect?' + decodeText;
                                 let statusCode = 800;
+                                document.querySelector(".loader-container").style.display = "block";
                                 fetch(url).then(resp => {
                                     statusCode = resp.status;
                                     return resp.json();
                                 }).then(
                                     data => {
+                                        document.querySelector(".loader-container").style.display = "none";
                                         if (statusCode < 400) {
                                             window.location.href = '/accueil';
                                             return;
