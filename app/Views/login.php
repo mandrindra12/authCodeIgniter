@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/assets/font-awesome/font-awesome.min.css">
+    <link rel="stylesheet" href="/assets/fontawesome/css/all.min.css">
     <title>MIT | Connexion</title>
     <style>
         @font-face {
@@ -258,6 +258,18 @@
             background-color: rgba(0, 0, 0, 0.4);
         }
 
+
+        /*CSS for hide mdp*/
+        .password-input input{
+            padding-right : 15%
+        }
+        .toggle-password i{
+            position: absolute;
+            transform: translate(-125%,50%);
+            font-size: 20px;
+            opacity: 0.8;
+        }
+
         /* .loader {
             position: fixed;
             z-index: 2;
@@ -377,8 +389,11 @@
                     <input type="text" name="prenom" id="" autocomplete="off">
                 </div>
                 <div class="fields">
-                    <label for="password">Mot de passe<sup>*</sup></label>
-                    <input type="password" name="password" id="password" placeholder='Mot de passe...' autocomplete="off">
+                    <div class="password-input">    
+                        <label for="password">Mot de passe<sup>*</sup></label>
+                        <input type="password" name="password" id="password" placeholder='Mot de passe...' autocomplete="off">
+                        <span class="toggle-password" onclick="togglePasswordVisibility()"><i class="fa fa-eye-slash"></i></span>
+                    </div>
                 </div>
                 <p style="color: #555;"><sup>*</sup>Champ obligatoire</p>
                 <div class="divButton">
