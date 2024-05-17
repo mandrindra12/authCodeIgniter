@@ -113,7 +113,7 @@
         .popup {
             display: none;
             position: fixed;
-            z-index: 1;
+            z-index: 3;
             left: 0;
             top: 0;
             width: 100%;
@@ -178,7 +178,7 @@
         .loader-container {
             display: none;
             position: fixed;
-            z-index: 1;
+            z-index: 4;
             left: 0;
             top: 0;
             width: 100%;

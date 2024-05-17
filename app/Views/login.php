@@ -188,7 +188,7 @@
         label,
         h2,
         h3 {
-            color: #ccc;
+            color: #555;
         }
 
         .p-close:hover,
@@ -369,17 +369,18 @@
             <h2 class="title">Connexion</h2>
             <form class="form-fields">
                 <div class="fields">
-                    <label for="username">Nom</label>
+                    <label for="username">Nom<sup>*</sup></label>
                     <input type="text" name="nom" id="username" autocomplete="off">
                 </div>
                 <div class="fields">
-                    <label for="username">Prénom</label>
+                    <label for="username">Prénom(s)<sup>*</sup></label>
                     <input type="text" name="prenom" id="" autocomplete="off">
                 </div>
                 <div class="fields">
-                    <label for="password">Mot de passe</label>
+                    <label for="password">Mot de passe<sup>*</sup></label>
                     <input type="password" name="password" id="password" placeholder='Mot de passe...' autocomplete="off">
                 </div>
+                <p style="color: #555;"><sup>*</sup>Champ obligatoire</p>
                 <div class="divButton">
                     <button type="submit" id="loginButton">Connexion</button>
                 </div>
