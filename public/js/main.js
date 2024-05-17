@@ -56,7 +56,7 @@ window.onclick = (e) => {
 };
 
 //for dynamic hide mdp
-function togglePasswordVisibility() {
+function Visibility() {
   var passwordInput = document.getElementById("password");
   var toggleIcon = document.querySelector(".toggle-password i");
 

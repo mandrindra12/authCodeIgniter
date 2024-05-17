@@ -383,13 +383,14 @@
                 <div class="fields">
                     <label for="username">Nom<sup>*</sup></label>
                     <input type="text" name="nom" id="username" autocomplete="off">
+                    
                 </div>
                 <div class="fields">
-                    <label for="username">Prénom(s)<sup>*</sup></label>
-                    <input type="text" name="prenom" id="" autocomplete="off">
+                    <label for="prenom">Prénom(s)<sup>*</sup></label>
+                    <input type="text" name="prenom" id="prenom" autocomplete="off">
                 </div>
                 <div class="fields">
-                    <div class="password-input">    
+                    <div class="password-input"> 
                         <label for="password">Mot de passe<sup>*</sup></label>
                         <input type="password" name="password" id="password" placeholder='Mot de passe...' autocomplete="off">
                         <span class="toggle-password" onclick="togglePasswordVisibility()"><i class="fa fa-eye-slash"></i></span>
@@ -500,7 +501,22 @@
             </div>
         </div>
     </div>
+    <script>
+        const input = document.getElementById("username");
+        const regex = /^[a-zA-Z]*$/;
+        input.addEventListener("input", (e) => {
+            if (!regex.test(e.target.value)) {
+                e.target.value = e.target.value.slice(0,-1);
+            }
+        });
 
+        const inputpre = document.getElementById("prenom");
+        inputpre.addEventListener("input", (e) => {
+            if (!regex.test(e.target.value)) {
+                e.target.value = e.target.value.slice(0,-1);
+            }
+        });
+    </script>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             var qrButton = document.getElementById('qrButton');
