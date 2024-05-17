@@ -15,28 +15,29 @@ s.addEventListener("click", (e) => {
         return;
     }
     if (current_pass.value != verify_pass.value) {
-        m.style.display = "block";
+        p_text.innerText = "Les mots de passe ne correspondent pas!";
+        popup.style.display = "block";
         return;
     }
     signup(formData);
 });
 // keep track of the change in the password entry
-current_pass.addEventListener("input", () => {
-    if (current_pass.value != verify_pass.value) {
-        m.style.display = "block";
-        return;
-    } else {
-        m.style.display = "none";
-    }
-});
-verify_pass.addEventListener("input", () => {
-    if (current_pass.value != verify_pass.value) {
-        m.style.display = "block";
-        return;
-    } else {
-        m.style.display = "none";
-    }
-});
+// current_pass.addEventListener("input", () => {
+//     if (current_pass.value != verify_pass.value) {
+//         m.style.display = "block";
+//         return;
+//     } else {
+//         m.style.display = "none";
+//     }
+// });
+// verify_pass.addEventListener("input", () => {
+//     if (current_pass.value != verify_pass.value) {
+//         m.style.display = "block";
+//         return;
+//     } else {
+//         m.style.display = "none";
+//     }
+// });
 
 const signup = async (formData) => {
     document.querySelector(".loader-container").style.display = "block";
