@@ -217,7 +217,7 @@
       <div class="header-button">
         <a href='/deconnexion' class="link">
           <button>
-            Deconnexion
+            Déconnexion
           </button>
         </a>
       </div>
