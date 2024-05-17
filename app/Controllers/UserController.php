@@ -2,10 +2,10 @@
 
 namespace App\Controllers;
 
-require 'vendor/autoload.php';
+// require 'vendor/autoload.php';
 
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
+// use PHPMailer\PHPMailer\PHPMailer;
+// use PHPMailer\PHPMailer\Exception;
 
 use App\Models\UserModel;
 use App\Models\PersonModel;
@@ -33,42 +33,42 @@ class UserController extends BaseController
         return view('newPassword');
     }
 
-    public function sendMail(): \CodeIgniter\HTTP\RedirectResponse
-    {
-        $request = \Config\Services::request();
-        $destinataires = $request->getPost('mail');
-        $mail = new PHPMailer(true);
-        try {
-            // SMTP settings
-            $mail->isSMTP();
-            $mail->Host = 'mail.mit-ua.mg';
-            $mail->SMTPAuth = true;
-            $mail->Username = 'fnomenjanahary@mit-ua.mg';
-            $mail->Password = 'G}Tc4jE%{c?+';
-            $mail->SMTPSecure = 'tls';
-            $mail->Port = 587;
-
-            // Sender and reply-to
-            $mail->setFrom('fnomenjanahary@mit-ua.mg', 'Nomenjanahary');
-            $mail->addReplyTo($destinataires, 'Fock');
-
-            // Add the recipient
-            $mail->addAddress($destinataires, 'Fock');
-
-            // Email content
-            $mail->isHTML(true);
-            $mail->Subject = 'Mot de passe oublié';
-            $mail->Body    = 'Voici le lien pour renouveler votre mot de passe <a href="https://dev.authentication.mit/new-password/" >Click</a>';
-            //$mail->addAttachment($pdf);
-
-            $mail->send();
-            echo "Message has been sent\n";
-            return redirect()->route('/');
-        } catch (Exception $e) {
-            echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}\n";
-            return redirect()->to('/index.php/forget-password');
-        }
-    }
+    // public function sendMail(): \CodeIgniter\HTTP\RedirectResponse
+    // {
+    //     $request = \Config\Services::request();
+    //     $destinataires = $request->getPost('mail');
+    //     $mail = new PHPMailer(true);
+    //     try {
+    //         // SMTP settings
+    //         $mail->isSMTP();
+    //         $mail->Host = 'mail.mit-ua.mg';
+    //         $mail->SMTPAuth = true;
+    //         $mail->Username = 'fnomenjanahary@mit-ua.mg';
+    //         $mail->Password = 'G}Tc4jE%{c?+';
+    //         $mail->SMTPSecure = 'tls';
+    //         $mail->Port = 587;
+    //
+    //         // Sender and reply-to
+    //         $mail->setFrom('fnomenjanahary@mit-ua.mg', 'Nomenjanahary');
+    //         $mail->addReplyTo($destinataires, 'Fock');
+    //
+    //         // Add the recipient
+    //         $mail->addAddress($destinataires, 'Fock');
+    //
+    //         // Email content
+    //         $mail->isHTML(true);
+    //         $mail->Subject = 'Mot de passe oublié';
+    //         $mail->Body    = 'Voici le lien pour renouveler votre mot de passe <a href="https://dev.authentication.mit/new-password/" >Click</a>';
+    //         //$mail->addAttachment($pdf);
+    //
+    //         $mail->send();
+    //         echo "Message has been sent\n";
+    //         return redirect()->route('/');
+    //     } catch (Exception $e) {
+    //         echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}\n";
+    //         return redirect()->to('/index.php/forget-password');
+    //     }
+    // }
     public function inscriptionIndex(): string
     {
         return view('signup');
