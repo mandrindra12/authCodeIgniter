@@ -9,11 +9,7 @@ const m = document.querySelector(".match-content");
 s.addEventListener("click", (e) => {
     e.preventDefault();
     const formData = new FormData(document.getElementById("signup"));
-    if (
-        !formData.get("nom") ||
-        !formData.get("prenom") ||
-        !formData.get("password")
-    ) {
+    if (!formData.get("nom") || !formData.get("password")) {
         p_text.innerText = "Veuillez remplir tous les champs!";
         popup.style.display = "block";
         return;
