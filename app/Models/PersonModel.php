@@ -4,7 +4,8 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class PersonModel extends Model {
+class PersonModel extends Model
+{
   protected $db;
   protected $builder;
   protected $table = 'personnes';
@@ -23,17 +24,19 @@ class PersonModel extends Model {
     'nationalite',
     'id_statut'
   ];
-  public function __construct() {
+  public function __construct()
+  {
     $this->db = db_connect();
-    $this->builder = $this->db->table($this->table); 
+    $this->builder = $this->db->table($this->table);
   }
-  public function exist($n, $p) {
+  public function exist($n, $p)
+  {
     $c = ['nom' => $n, 'prenoms' => $p];
     $count = $this->where($c)->countAllResults();
     return $count > 0;
   }
-  public function getRelativeInfo($nom, $prenoms) {
-    return $this->builder->select('id_personne, id_statut')->where(['nom'=> $nom, 'prenoms'=> $prenoms])->get()->getResultArray();
+  public function getRelativeInfo($nom, $prenoms): array
+  {
+    return $this->builder->select('id_personne, id_statut')->where(['nom' => $nom, 'prenoms' => $prenoms])->get()->getResultArray();
   }
 }
-
