@@ -125,22 +125,28 @@ class UserController extends BaseController
             // echo json_encode(['status' => 'no person found for this name in mit/misa', 'status_code'=> 404]);
             return $this->response->setContentType('application/json')->setStatusCode(404)
                 ->setJSON(['status' => 'no person found for this name in MIT/MISA']);
-        } elseif ($this->usermodel->hasAccount($userdata['nom'], $userdata['prenom'])) {
+            // } elseif ($this->usermodel->hasAccount($userdata['nom'], $userdata['prenom'])) {
             // echo json_encode(['status' => 'user has already an account, abort...', 'status_code' => 400]);
-            return $this->response->setContentType('application/json')->setStatusCode(400)
-                ->setJSON(['status' => 'user has already an account, Abort...']);
+            // return $this->response->setContentType('application/json')->setStatusCode(400)
+            // ->setJSON(['status' => 'user has already an account, Abort...']);
         } else {
             $infoPerson = $this->personmodel->getRelativeInfo($userdata['nom'], $userdata['prenom']);
-            $hashedpassword = password_hash($userdata['password'], PASSWORD_BCRYPT);
-            $data = array(
-                'nom' => $userdata['nom'],
-                'prenoms' => $userdata['prenom'],
-                'mot_de_passe' => $hashedpassword,
-                'id_personne' => $infoPerson[0]['id_personne'],
-                'statut' => $infoPerson[0]['id_statut']
-            );
-            $this->usermodel->inscription($data);
-            return $this->response->setContentType('application/json')->setStatusCode(201)->setJSON(['status' => 'registration successful']);
+            $userInfo = $this->usermodel->hasAccount($userdata['nom'], $userdata['prenom']);
+            if ($userInfo[0]['id_personne'] == $infoPerson[0]['id_personne']) {
+                return $this->response->setContentType('application/json')->setStatusCode(400)
+                    ->setJSON(['status' => 'user has already an account, Abort...']);
+            } else {
+                $hashedpassword = password_hash($userdata['password'], PASSWORD_BCRYPT);
+                $data = array(
+                    'nom' => $userdata['nom'],
+                    'prenoms' => $userdata['prenom'],
+                    'mot_de_passe' => $hashedpassword,
+                    'id_personne' => $infoPerson[0]['id_personne'],
+                    'statut' => $infoPerson[0]['id_statut']
+                );
+                $this->usermodel->inscription($data);
+                return $this->response->setContentType('application/json')->setStatusCode(201)->setJSON(['status' => 'registration successful']);
+            }
         }
     }
     private function setSession($data): void
