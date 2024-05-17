@@ -132,20 +132,23 @@ class UserController extends BaseController
         } else {
             $infoPerson = $this->personmodel->getRelativeInfo($userdata['nom'], $userdata['prenom']);
             $userInfo = $this->usermodel->hasAccount($userdata['nom'], $userdata['prenom']);
-            if ($userInfo[0]['id_personne'] == $infoPerson[0]['id_personne']) {
-                return $this->response->setContentType('application/json')->setStatusCode(400)
-                    ->setJSON(['status' => 'user has already an account, Abort...']);
-            } else {
-                $hashedpassword = password_hash($userdata['password'], PASSWORD_BCRYPT);
-                $data = array(
-                    'nom' => $userdata['nom'],
-                    'prenoms' => $userdata['prenom'],
-                    'mot_de_passe' => $hashedpassword,
-                    'id_personne' => $infoPerson[0]['id_personne'],
-                    'statut' => $infoPerson[0]['id_statut']
-                );
-                $this->usermodel->inscription($data);
-                return $this->response->setContentType('application/json')->setStatusCode(201)->setJSON(['status' => 'registration successful']);
+            $maxLength = (count($infoPerson) >= count($userInfo)) ? count($infoPerson) : count($userInfo);
+            for ($i = 0; $i < $maxLength; $i++) {
+                if ($userInfo[$i]['id_personne'] == $infoPerson[$i]['id_personne']) {
+                    return $this->response->setContentType('application/json')->setStatusCode(400)
+                        ->setJSON(['status' => 'user has already an account, Abort...']);
+                } else {
+                    $hashedpassword = password_hash($userdata['password'], PASSWORD_BCRYPT);
+                    $data = array(
+                        'nom' => $userdata['nom'],
+                        'prenoms' => $userdata['prenom'],
+                        'mot_de_passe' => $hashedpassword,
+                        'id_personne' => $infoPerson[$i]['id_personne'],
+                        'statut' => $infoPerson[$i]['id_statut']
+                    );
+                    $this->usermodel->inscription($data);
+                    return $this->response->setContentType('application/json')->setStatusCode(201)->setJSON(['status' => 'registration successful']);
+                }
             }
         }
     }
