@@ -24,7 +24,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
         }
 
         .container {
@@ -301,8 +301,8 @@
             <h3>Cr&eacute;ation de compte</h3>
             <form id="signup">
                 <div class="input">
-                    <input type="text" name="nom" placeholder='Nom...' required autocomplete='off'>
-                    <input type="text" name="prenom" placeholder='Pr&eacute;nom...' required autocomplete='off'>
+                    <input type="text" id="username" name="nom" placeholder='Nom...' required autocomplete='off'>
+                    <input type="text" id="prenom" name="prenom" placeholder='Pr&eacute;nom...' required autocomplete='off'>
                     <input type="password" name="password" placeholder='Mot de passe...' required autocomplete='off'>
                     <div style="display: flex;flex-direction:column;">
                         <input type="password" name="passwd" placeholder='Confirmation mot de passe...' required autocomplete='off'>
@@ -325,6 +325,22 @@
             </div>
         </div>
     </div>
+    <script>
+        const input = document.getElementById("username");
+        const regex = /^[a-zA-Z]*$/;
+        input.addEventListener("input", (e) => {
+            if (!regex.test(e.target.value)) {
+                e.target.value = e.target.value.slice(0,-1);
+            }
+        });
+
+        const inputpre = document.getElementById("prenom");
+        inputpre.addEventListener("input", (e) => {
+            if (!regex.test(e.target.value)) {
+                e.target.value = e.target.value.slice(0,-1);
+            }
+        });
+    </script>
     <script src="<?php echo base_url('js/signup.js'); ?>"></script>
 </body>
 
