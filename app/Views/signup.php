@@ -59,7 +59,8 @@
         }
 
         .input input {
-            width: 300px;
+            flex: 1 1 10px;
+            min-width: 300px;
             border-radius: 10px;
             border: 1px solid #ccc;
             padding: 12px;
@@ -305,7 +306,7 @@
                     <input type="password" name="password" placeholder='Mot de passe...' required autocomplete='off'>
                     <div style="display: flex;flex-direction:column;">
                         <input type="password" name="passwd" placeholder='Confirmation mot de passe...' required autocomplete='off'>
-                        <p class="match-content" style="display: none;color:red">Ne correspondent pas</p>
+                        <p class="match-content" style="display: none;color:red"></p>
                     </div>
                 </div>
                 <div class="button">
