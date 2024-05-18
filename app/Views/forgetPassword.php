@@ -364,7 +364,7 @@
     <div class="main">
         <div class="container" id="formContainer" style="display:flex;">
             <h2 class="title">Récupérer votre mot de passe</h2>
-            <form class="form-fields" action="/index.php/mail" method="post">
+            <form class="form-fields" action="/mail" method="post">
                 <div class="fields">
                     <label for="username">Entrer votre mail</label>
                     <input type="email" name="mail" id="username" required >
@@ -376,7 +376,7 @@
             <div class="link">
                 <p>Récupérer facilement votre compte MIT</p>
                 <div class="container-link-signup">
-                    <a href="/index.php/">
+                    <a href="/">
 			<p class="link ">Annuler</p>
 		    </a>
 		     <a href="/index.php/inscription">

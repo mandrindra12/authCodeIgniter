@@ -388,6 +388,11 @@
             <div class="link">
                 <p>Connectez-vous facilement avec votre compte MIT</p>
                 <div class="container-link-signup">
+                    <a href="/forget-password">
+                        <p class="link">Mot de passe oublié?</p>
+                    </a>
+                </div>
+                <div class="container-link-signup">
                     <a href="/inscription">
                         <p class="link">Créer un compte</p>
                     </a>
