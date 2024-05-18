@@ -30,7 +30,7 @@ class UserModel extends Model
     $this->builder->set('est_actif', 1)->where($conditions)->update();
     return true;
   }
-  public function verifyPassword(string $nom, string $prenom, $mdp): bool
+  public function verifyPassword(string $nom, string $prenom, string $mdp): bool
   {
     $conditions = ['nom' => $nom, 'prenoms' => $prenom];
     $users = $this->where($conditions)->get()->getResultArray();
@@ -41,7 +41,7 @@ class UserModel extends Model
     }
     return false;
   }
-  public function hasAccount($nom, $prenom)
+  public function hasAccount(string $nom, string $prenom)
   {
     $c = array('nom' => $nom, 'prenoms' => $prenom);
     $count = 0;

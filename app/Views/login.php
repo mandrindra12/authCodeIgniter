@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/assets/font-awesome/font-awesome.min.css">
+    <link rel="stylesheet" href="/assets/fontawesome/css/all.min.css">
     <title>MIT | Connexion</title>
     <style>
         @font-face {
@@ -27,7 +27,7 @@
             justify-content: center;
             align-items: center;
             width: 100vw;
-            height: 100vh;
+            min-height: 100vh;
         }
 
         .title {
@@ -258,6 +258,18 @@
             background-color: rgba(0, 0, 0, 0.4);
         }
 
+
+        /*CSS for hide mdp*/
+        .password-input input{
+            padding-right : 15%
+        }
+        .toggle-password i{
+            position: absolute;
+            transform: translate(-125%,50%);
+            font-size: 20px;
+            opacity: 0.8;
+        }
+
         /* .loader {
             position: fixed;
             z-index: 2;
@@ -371,14 +383,18 @@
                 <div class="fields">
                     <label for="username">Nom<sup>*</sup></label>
                     <input type="text" name="nom" id="username" autocomplete="off">
+                    
                 </div>
                 <div class="fields">
-                    <label for="username">Prénom(s)<sup>*</sup></label>
-                    <input type="text" name="prenom" id="" autocomplete="off">
+                    <label for="prenom">Prénom(s)<sup>*</sup></label>
+                    <input type="text" name="prenom" id="prenom" autocomplete="off">
                 </div>
                 <div class="fields">
-                    <label for="password">Mot de passe<sup>*</sup></label>
-                    <input type="password" name="password" id="password" placeholder='Mot de passe...' autocomplete="off">
+                    <div class="password-input"> 
+                        <label for="password">Mot de passe<sup>*</sup></label>
+                        <input type="password" name="password" id="password" placeholder='Mot de passe...' autocomplete="off">
+                        <span class="toggle-password" onclick="togglePasswordVisibility()"><i class="fa fa-eye-slash"></i></span>
+                    </div>
                 </div>
                 <p style="color: #555;"><sup>*</sup>Champ obligatoire</p>
                 <div class="divButton">
@@ -490,7 +506,22 @@
             </div>
         </div>
     </div>
+    <script>
+        const input = document.getElementById("username");
+        const regex = /^[a-zA-Z]*$/;
+        input.addEventListener("input", (e) => {
+            if (!regex.test(e.target.value)) {
+                e.target.value = e.target.value.slice(0,-1);
+            }
+        });
 
+        const inputpre = document.getElementById("prenom");
+        inputpre.addEventListener("input", (e) => {
+            if (!regex.test(e.target.value)) {
+                e.target.value = e.target.value.slice(0,-1);
+            }
+        });
+    </script>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             var qrButton = document.getElementById('qrButton');
