@@ -19,12 +19,7 @@ s.addEventListener("click", (e) => {
     popup.style.display = "block";
     return;
   }
-  if (!checkPassword(current_pass.value)) {
-    p_text.innerText =
-      "Le mot de passe doit contenir au moins 8 caracteres dont une majuscule, une miniscule et un nombre";
-    popup.style.display = "block";
-    return;
-  }
+
   signup(formData);
 });
 const checkPassword = (str) => {
@@ -32,14 +27,22 @@ const checkPassword = (str) => {
   return regex.test(str);
 };
 // keep track of the change in the password entry
-// current_pass.addEventListener("input", () => {
-//     if (current_pass.value != verify_pass.value) {
-//         m.style.display = "block";
-//         return;
-//     } else {
-//         m.style.display = "none";
-//     }
-// });
+current_pass.addEventListener("input", () => {
+  //     if (current_pass.value != verify_pass.value) {
+  //         m.style.display = "block";
+  //         return;
+  //     } else {
+  //         m.style.display = "none";
+  //}
+  if (!checkPassword(current_pass.value)) {
+    m.innerText =
+      "Le mot de passe doit contenir au moins 8 caracteres dont une majuscule, une miniscule et un nombre";
+    m.style.display = "block";
+    return;
+  } else {
+    m.style.display = "none";
+  }
+});
 // verify_pass.addEventListener("input", () => {
 //     if (current_pass.value != verify_pass.value) {
 //         m.style.display = "block";
