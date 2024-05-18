@@ -29,7 +29,7 @@ class UserController extends BaseController
         return view('newPassword');
     }
     
-    public function newMDP(){
+    public function sendMail(){
         $request=\Config\Services::request();
         $destinataires=$request->getvar('mail');
         $name='';
@@ -55,15 +55,16 @@ class UserController extends BaseController
             // Email content
             $mail->isHTML(true);
             $mail->Subject = 'Nouveau mot de passe';
-            $mail->Body    = 'Voici le mail pour renouveler le mot de passe <a href"localhost:8080/new-password" >Click</a>';
+            $mail->Body    = 'Voici le mail pour renouveler le mot de passe <a href="localhost:8080/new-password" > Click </a>';
            // $mail->addAttachment($pdf);
         
             $mail->send();
             echo "Message has been sent\n";
+           return redirect()->to("/");
         } catch (Exception $e) {
             echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}\n";
         }
-        return redirect()->route('/');
+
     }
     public function inscriptionIndex(): string
     {

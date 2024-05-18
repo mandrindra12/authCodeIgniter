@@ -13,9 +13,10 @@ $routes->get('/accueil', 'UserController::accueil');
 $routes->get('/deconnexion', 'UserController::deconnexion');
 $routes->get('/qrconnect', 'UserController::qrConnexion');
 $routes->get('/forget-password','UserController::forgetPassword');
+$routes->get('/new-password','UserController::newPassword');
+
 # post 
 $routes->post('/connexion', 'UserController::connexion');
 $routes->post('/inscription', 'UserController::inscription');
 $routes->post('/', 'UserController::connexion');
 $routes->post('/mail','UserController::sendMail');
-$routes->get('/new-password','UserController::newPassword');
