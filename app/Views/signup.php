@@ -351,7 +351,7 @@
     </div>
     <script>
         const input = document.getElementById("username");
-        const regex = /^[a-zA-Z]*$/;
+        const regex = /^[a-zA-Z\s]*$/;
         input.addEventListener("input", (e) => {
             if (!regex.test(e.target.value)) {
                 e.target.value = e.target.value.slice(0, -1);
