@@ -260,12 +260,13 @@
 
 
         /*CSS for hide mdp*/
-        .password-input input{
-            padding-right : 15%
+        .password-input input {
+            padding-right: 15%
         }
-        .toggle-password i{
+
+        .toggle-password i {
             position: absolute;
-            transform: translate(-125%,50%);
+            transform: translate(-125%, 50%);
             font-size: 20px;
             opacity: 0.8;
         }
@@ -383,17 +384,17 @@
                 <div class="fields">
                     <label for="username">Nom<sup>*</sup></label>
                     <input type="text" name="nom" id="username" autocomplete="off">
-                    
+
                 </div>
                 <div class="fields">
                     <label for="prenom">Prénom(s)<sup>*</sup></label>
                     <input type="text" name="prenom" id="prenom" autocomplete="off">
                 </div>
                 <div class="fields">
-                    <div class="password-input"> 
+                    <div class="password-input">
                         <label for="password">Mot de passe<sup>*</sup></label>
                         <input type="password" name="password" id="password" placeholder='Mot de passe...' autocomplete="off">
-                        <span class="toggle-password" onclick="togglePasswordVisibility()"><i class="fa fa-eye-slash"></i></span>
+                        <span class="toggle-password"><i class="fa fa-eye-slash"></i></span>
                     </div>
                 </div>
                 <p style="color: #555;"><sup>*</sup>Champ obligatoire</p>
@@ -508,17 +509,17 @@
     </div>
     <script>
         const input = document.getElementById("username");
-        const regex = /^[a-zA-Z]*$/;
+        const regex = /^[a-zA-Z\s]*$/;
         input.addEventListener("input", (e) => {
             if (!regex.test(e.target.value)) {
-                e.target.value = e.target.value.slice(0,-1);
+                e.target.value = e.target.value.slice(0, -1);
             }
         });
 
         const inputpre = document.getElementById("prenom");
         inputpre.addEventListener("input", (e) => {
             if (!regex.test(e.target.value)) {
-                e.target.value = e.target.value.slice(0,-1);
+                e.target.value = e.target.value.slice(0, -1);
             }
         });
     </script>
