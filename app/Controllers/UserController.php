@@ -21,21 +21,24 @@ class UserController extends BaseController
         return view('login');
     }
 
-	public function forgetPassword(){
-		return view('forgetPassword');
-	}
+    public function forgetPassword(): string
+    {
+        return view('forgetPassword');
+    }
 
-    public function newPassword(){
+    public function newPassword(): string
+    {
         return view('newPassword');
     }
-    
-    public function sendMail(){
-        $request=\Config\Services::request();
-        $destinataires=$request->getvar('mail');
-        $name='';
-        sprintf($destinataires,"%s@mit-ua.mg",$name);
+
+    public function sendMail(): \CodeIgniter\HTTP\RedirectResponse
+    {
+        $request = \Config\Services::request();
+        $destinataires = $request->getvar('mail');
+        $name = '';
+        sprintf($destinataires, "%s@mit-ua.mg", $name);
         $mail = new PHPMailer(true);
-        try{
+        try {
             // SMTP settings
             $mail->isSMTP();
             $mail->Host = 'mail.mit-ua.mg';
@@ -44,27 +47,26 @@ class UserController extends BaseController
             $mail->Password = '*sz$v^19^p!e';
             $mail->SMTPSecure = 'tls';
             $mail->Port = 587;
-        
+
             // Sender and reply-to
             $mail->setFrom('mandriamahenintsoa@mit-ua.mg', 'Andriamahenintsoa');
-            $mail->addReplyTo($destinataires,$name );
-        
+            $mail->addReplyTo($destinataires, $name);
+
             // Add the recipient
             $mail->addAddress($destinataires, $name);
-        
+
             // Email content
             $mail->isHTML(true);
             $mail->Subject = 'Nouveau mot de passe';
             $mail->Body    = 'Voici le mail pour renouveler le mot de passe <a href="localhost:8080/new-password" > Click </a>';
-           // $mail->addAttachment($pdf);
-        
+            // $mail->addAttachment($pdf);
+
             $mail->send();
             echo "Message has been sent\n";
-           return redirect()->to("/");
+            return redirect()->to("/");
         } catch (Exception $e) {
             echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}\n";
         }
-
     }
     public function inscriptionIndex(): string
     {
@@ -97,18 +99,18 @@ class UserController extends BaseController
             $user = $users[0];
             $this->usermodel->connexion($user['nom'], $user['prenoms']);
             $data = [
-              'id' => $user['id_personne'],
-              'nom' => $user["nom"],
-              'prenom' => $user["prenoms"],
-              'mot_de_passe' => $user["mot_de_passe"],
-              'statut' => $userStatus[0]['statut'],
-              'prefix' => $prefix
+                'id' => $user['id_personne'],
+                'nom' => $user["nom"],
+                'prenom' => $user["prenoms"],
+                'mot_de_passe' => $user["mot_de_passe"],
+                'statut' => $userStatus[0]['statut'],
+                'prefix' => $prefix
             ];
             $this->setSession($data);
             return $this->response
-              ->setContentType('application/json')
-              ->setStatusCode(200)
-              ->setJSON(['status' => 'log in successful']);
+                ->setContentType('application/json')
+                ->setStatusCode(200)
+                ->setJSON(['status' => 'log in successful']);
         }
     }
     public function connexion(): \CodeIgniter\HTTP\ResponseInterface
@@ -121,9 +123,9 @@ class UserController extends BaseController
         if (empty($userStatus)) {
             // echo json_encode(['status' => 'user not found', 'status_code' => 404]);
             return $this->response
-              ->setContentType('application/json')
-              ->setStatusCode(404)
-              ->setJSON(['status' => 'user not found']);
+                ->setContentType('application/json')
+                ->setStatusCode(404)
+                ->setJSON(['status' => 'user not found']);
         }
         // return $this->response->setJSON(['statut' => $users]);
         foreach ($users as $user) {
@@ -139,26 +141,26 @@ class UserController extends BaseController
                     // echo json_encode(['status' => 'loggin successful', 'status_code' => 200]);
                     $prefix = ($userStatus[0]['statut'] == 1) ? "Monsieur" : "Etudiant(e)";
                     $data = [
-                      'id' => $user['id_personne'],
-                      'nom' => $user["nom"],
-                      'prenom' => $user["prenoms"],
-                      'mot_de_passe' => $user["mot_de_passe"],
-                      'statut' => $userStatus[0]['statut'],
-                      'prefix' => $prefix
+                        'id' => $user['id_personne'],
+                        'nom' => $user["nom"],
+                        'prenom' => $user["prenoms"],
+                        'mot_de_passe' => $user["mot_de_passe"],
+                        'statut' => $userStatus[0]['statut'],
+                        'prefix' => $prefix
                     ];
                     // if($user <= 0) return redirect()->route('/');
                     $this->setSession($data);
                     return $this->response
-                      ->setContentType('application/json')
-                      ->setStatusCode(200)
-                      ->setJSON(['status' => 'log in successful']);
+                        ->setContentType('application/json')
+                        ->setStatusCode(200)
+                        ->setJSON(['status' => 'log in successful']);
                 }
             } else {
                 // echo json_encode(['status' => 'incorrect password', 'status_code' => 200]);
                 return $this->response
-                  ->setContentType('application/json')
-                  ->setStatusCode(403)
-                  ->setJSON(['status' => 'incorrect password']);
+                    ->setContentType('application/json')
+                    ->setStatusCode(403)
+                    ->setJSON(['status' => 'incorrect password']);
             }
         }
         return view('500.html');
@@ -169,20 +171,20 @@ class UserController extends BaseController
         if (!$this->personmodel->exist($userdata['nom'], $userdata['prenom'])) {
             // echo json_encode(['status' => 'no person found for this name in mit/misa', 'status_code'=> 404]);
             return $this->response->setContentType('application/json')->setStatusCode(404)
-              ->setJSON(['status' => 'no person found for this name in MIT/MISA']);
+                ->setJSON(['status' => 'no person found for this name in MIT/MISA']);
         } elseif ($this->usermodel->hasAccount($userdata['nom'], $userdata['prenom'])) {
             // echo json_encode(['status' => 'user has already an account, abort...', 'status_code' => 400]);
             return $this->response->setContentType('application/json')->setStatusCode(400)
-              ->setJSON(['status' => 'user has already an account, Abort...']);
+                ->setJSON(['status' => 'user has already an account, Abort...']);
         } else {
             $infoPerson = $this->personmodel->getRelativeInfo($userdata['nom'], $userdata['prenom']);
             $hashedpassword = password_hash($userdata['password'], PASSWORD_BCRYPT);
             $data = array(
-              'nom' => $userdata['nom'],
-              'prenoms' => $userdata['prenom'],
-              'mot_de_passe' => $hashedpassword,
-              'id_personne' => $infoPerson[0]['id_personne'],
-              'statut' => $infoPerson[0]['id_statut']
+                'nom' => $userdata['nom'],
+                'prenoms' => $userdata['prenom'],
+                'mot_de_passe' => $hashedpassword,
+                'id_personne' => $infoPerson[0]['id_personne'],
+                'statut' => $infoPerson[0]['id_statut']
             );
             $this->usermodel->inscription($data);
             return $this->response->setContentType('application/json')->setStatusCode(201)->setJSON(['status' => 'registration successful']);

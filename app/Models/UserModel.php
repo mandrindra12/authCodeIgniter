@@ -19,7 +19,7 @@ class UserModel extends Model
     $this->builder = $this->db->table($this->table);
   }
   // ATY NO INSERTION ANATY DATABASE
-  public function inscription($data)
+  public function inscription($data): bool|int|string
   {
     return $this->insert($data);
   }
@@ -33,7 +33,7 @@ class UserModel extends Model
   public function verifyPassword(string $nom, string $prenom, string $mdp): bool
   {
     $conditions = ['nom' => $nom, 'prenoms' => $prenom];
-    $users = $this->where($conditions)->get()->getResultArray();
+    $users = $this->builder->where($conditions)->get()->getResultArray();
     foreach ($users as $user) {
       if (password_verify($mdp, $user['mot_de_passe'])) {
         return true;
@@ -41,7 +41,7 @@ class UserModel extends Model
     }
     return false;
   }
-  public function hasAccount(string $nom, string $prenom)
+  public function hasAccount(string $nom, string $prenom): array
   {
     $c = array('nom' => $nom, 'prenoms' => $prenom);
     $count = 0;
@@ -51,7 +51,7 @@ class UserModel extends Model
   public function getInfo($nom, $prenom): array
   {
     $conditions = ['nom' => $nom, 'prenoms' => $prenom];
-    return $this->where($conditions)->get()->getResultArray();
+    return $this->builder->where($conditions)->get()->getResultArray();
   }
   public function deconnexion($id): void
   {
