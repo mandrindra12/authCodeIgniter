@@ -54,7 +54,7 @@ window.onclick = (e) => {
 };
 
 //for dynamic hide mdp
-function togglePasswordVisibility() {
+document.querySelector(".toggle-password").addEventListener("click", () => {
   var passwordInput = document.getElementById("password");
   var toggleIcon = document.querySelector(".toggle-password i");
 
@@ -67,4 +67,4 @@ function togglePasswordVisibility() {
     toggleIcon.classList.remove("fa-eye");
     toggleIcon.classList.add("fa-eye-slash");
   }
-}
+});
