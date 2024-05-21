@@ -303,6 +303,7 @@
                 <div class="input">
                     <input type="text" id="username" name="nom" placeholder='Nom...' required autocomplete='off'>
                     <input type="text" id="prenom" name="prenom" placeholder='Pr&eacute;nom...' required autocomplete='off'>
+                    <input type="email" id="prenom" name="mail" placeholder='Entrer votre mail' required autocomplete='off'>
                     <input type="password" name="password" placeholder='Mot de passe...' required autocomplete='off'>
                     <div style="display: flex;flex-direction:column;">
                         <input type="password" name="passwd" placeholder='Confirmation mot de passe...' required autocomplete='off'>

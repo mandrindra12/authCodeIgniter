@@ -58,7 +58,7 @@ class UserController extends BaseController
             // Email content
             $mail->isHTML(true);
             $mail->Subject = 'Nouveau mot de passe';
-            $mail->Body    = 'Voici le mail pour renouveler le mot de passe <a href="localhost:8080/new-password" > Click </a>';
+            $mail->Body    = 'Voici le mail pour renouveler le mot de passe <a href="https://dev.authentication.mit/new-password" > Click </a>';
             // $mail->addAttachment($pdf);
 
             $mail->send();
