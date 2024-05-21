@@ -10,10 +10,8 @@ b.addEventListener("click", (e) => {
 const login = async () => {
   const prenom = document.querySelector("input[name='prenom']").value.trim();
   const nom = document.querySelector("input[name='nom']").value.trim();
-  const password = document
-    .querySelector("input[name='password']")
-    .value;
-  if (!nom || !password || !prenom) {
+  const password = document.querySelector("input[name='password']").value;
+  if (!nom || !password) {
     p_text.innerText = "Veuillez remplir tous les champs!";
     popup.style.display = "block";
     return;
@@ -56,17 +54,17 @@ window.onclick = (e) => {
 };
 
 //for dynamic hide mdp
-function Visibility() {
+function togglePasswordVisibility() {
   var passwordInput = document.getElementById("password");
   var toggleIcon = document.querySelector(".toggle-password i");
 
   if (passwordInput.type === "password") {
-      passwordInput.type = "text";
-      toggleIcon.classList.remove("fa-eye-slash");
-      toggleIcon.classList.add("fa-eye");
+    passwordInput.type = "text";
+    toggleIcon.classList.remove("fa-eye-slash");
+    toggleIcon.classList.add("fa-eye");
   } else {
-      passwordInput.type = "password";
-      toggleIcon.classList.remove("fa-eye");
-      toggleIcon.classList.add("fa-eye-slash");
+    passwordInput.type = "password";
+    toggleIcon.classList.remove("fa-eye");
+    toggleIcon.classList.add("fa-eye-slash");
   }
 }
